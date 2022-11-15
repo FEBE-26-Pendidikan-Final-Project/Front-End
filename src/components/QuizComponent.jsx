@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getQuiz } from "../redux/action/quizAction";
 import Timer from "./Timer";
 import swal from "sweetalert";
 import axios from "axios";
 
 function QuizComponent() {
+  const navigate = useNavigate();
   const [answer, setAnswer] = useState();
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -41,7 +42,12 @@ function QuizComponent() {
         if (timerMinutes >= 0 && timerMinutes < 1) {
           setTimerMinutes(0);
           setTimerSeconds(1);
-          swal("Waktu habis");
+          swal("Waktu habis", "Waktumu habis", {
+            timer: 1000,
+          }).then(function () {
+            localStorage.setItem("score", 0);
+            navigate("/score");
+          });
         }
       }
     }, 1000);
@@ -54,12 +60,24 @@ function QuizComponent() {
 
     if (answer != null) {
       if (answer == correctAnswer) {
-        swal("Good job!", "Jawabanmu benar!", "success");
+        swal("Good job!", "Jawabanmu benar!", "success", {
+          timer: 1000,
+        }).then(function () {
+          localStorage.setItem("score", 100);
+          navigate("/score");
+        });
       } else {
-        swal("Sorry", "Jawabanmu kurang tepat", "error");
+        swal("Sorry", "Jawabanmu kurang tepat", "error", {
+          timer: 1000,
+        }).then(function () {
+          localStorage.setItem("score", 0);
+          navigate("/score");
+        });
       }
     } else {
-      swal("Warning", "Harap pilih jawabanmu!", "warning");
+      swal("Warning", "Harap pilih jawabanmu!", "warning", {
+        timer: 1000,
+      });
     }
   };
   if (isLoading) {
