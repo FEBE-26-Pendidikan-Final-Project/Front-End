@@ -33,3 +33,12 @@ export function getQuizById(id) {
     dispatch(successGetQuizByID(result.data));
   };
 }
+
+export function getQuiz(id) {
+  return async (dispatch) => {
+    dispatch(fetchStart());
+    const result = await axios.get(`https://634c0ee3317dc96a30906a1a.mockapi.io//literation/${id}`);
+    // console.log(result);
+    dispatch(successGetQuiz(result.data));
+  };
+}

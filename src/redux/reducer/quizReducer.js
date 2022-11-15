@@ -1,4 +1,4 @@
-import { FETCH_START, SUCCESS_GET_QUIZ_BY_ID } from "../action/quizAction";
+import { FETCH_START, SUCCESS_GET_QUIZ, SUCCESS_GET_QUIZ_BY_ID } from "../action/quizAction";
 
 const initialState = {
   quizz: [],
@@ -13,6 +13,12 @@ const quizReducer = (state = initialState, action) => {
         isLoading: true,
       };
     case SUCCESS_GET_QUIZ_BY_ID:
+      return {
+        ...state,
+        quizz: action.payload,
+        isLoading: false,
+      };
+    case SUCCESS_GET_QUIZ:
       return {
         ...state,
         quizz: action.payload,
