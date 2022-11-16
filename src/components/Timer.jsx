@@ -9,7 +9,8 @@ function Timer(props) {
       {props.title}
       <span id="literation-title"></span>{" "}
       <span className="text-danger" id="timer">
-        00.10.00
+        <span>{props.timerMinutes < 10 ? "0" + props.timerMinutes : props.timerMinutes}</span>:
+        <span>{props.timerSeconds < 10 ? "0" + props.timerSeconds : props.timerSeconds}</span>
       </span>
     </div>
   );
