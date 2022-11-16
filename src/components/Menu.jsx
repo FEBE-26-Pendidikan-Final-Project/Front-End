@@ -2,6 +2,7 @@ import React from "react";
 import home from "../assets/icon/home.svg";
 import account from "../assets/icon/account.svg";
 import logout from "../assets/icon/logout.svg";
+import {Link} from 'react-router-dom'
 
 function Menu() {
   return (
@@ -47,10 +48,10 @@ function Menu() {
               </a>
             </li>
             <li className="list-group-item">
-              <a href="index.html" className="nav-link">
+              <Link to={'/'} className="nav-link">
                 <img src={logout} alt="" className="mx-2" />
                 <span className="mx-3">Logout</span>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

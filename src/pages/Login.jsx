@@ -5,11 +5,12 @@ import buletan3 from "../assets/img/buletan3.png";
 import imageLogin from "../assets/img/loginpict.png";
 import iconUsername from "../assets/img/userlogin.svg";
 import iconPassword from "../assets/img/lock.svg";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
 function Login() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -36,10 +37,14 @@ function Login() {
       }
 
       if (result < 1) {
-        alert("Gagal Masuk");
+        swal("Error!", "Username atau Password Salah!", "error", {
+          timer: 1000,
+        })
       } else {
-        alert("Berhasil Masuk"),
-        location.pathname = "/text-quiz"
+        swal("Success!", "Berhasil Masuk!", "success", {
+          timer: 1000,
+        }),
+        navigate("/text-quiz");
       }
     };
     ambilData();
@@ -60,7 +65,7 @@ function Login() {
               <img src={buletan3} alt="" />
             </div>
             <img src={imageLogin} className="foto-login" alt="" />
-            <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&to=target@email.com&subject=&body=">mail link</a>
+            
 
             <div className="card-title">Tingkatkan Literasi Mu</div>
             <div className="card-text position-absolute">
