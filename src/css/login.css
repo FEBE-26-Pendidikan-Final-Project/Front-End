@@ -120,10 +120,10 @@ color: #2A5DC4;
 padding-left: 54px;
 }
 
-.btn-primary{
+.btn-login{
     width: 310px;
     height: 32px;
-    background-color: #2A5DC4;
+    background-color: #2A5DC4 !important;
     margin-left: 54px;
 }
 

@@ -1,12 +1,50 @@
-import '../css/login.css'
-import buletan1 from '../assets/img/buletan1.png'
-import buletan2 from '../assets/img/buletan2.png'
-import buletan3 from '../assets/img/buletan3.png'
-import imageLogin from '../assets/img/loginpict.png'
-import iconUsername from '../assets/img/userlogin.svg'
-import iconPassword from '../assets/img/lock.svg'
+import "../css/login.css";
+import buletan1 from "../assets/img/buletan1.png";
+import buletan2 from "../assets/img/buletan2.png";
+import buletan3 from "../assets/img/buletan3.png";
+import imageLogin from "../assets/img/loginpict.png";
+import iconUsername from "../assets/img/userlogin.svg";
+import iconPassword from "../assets/img/lock.svg";
+import { Link, Route, Routes } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
 function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleUsername = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleGetData = async () => {
+    let res = await axios.get(
+      "https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users"
+    );
+    let data = await res.data;
+
+    const ambilData = () => {
+      const result = [];
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].name == username && data[i].password == password) {
+          result.push(data[i]);
+        }
+      }
+
+      if (result < 1) {
+        alert("Gagal Masuk");
+      } else {
+        alert("Berhasil Masuk"),
+        location.pathname = "/text-quiz"
+      }
+    };
+    ambilData();
+  };
+
   return (
     <>
       <div className="wrapper d-flex justify-content-center position-relative">
@@ -22,6 +60,7 @@ function Login() {
               <img src={buletan3} alt="" />
             </div>
             <img src={imageLogin} className="foto-login" alt="" />
+            <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&to=target@email.com&subject=&body=">mail link</a>
 
             <div className="card-title">Tingkatkan Literasi Mu</div>
             <div className="card-text position-absolute">
@@ -40,9 +79,10 @@ function Login() {
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">
                 <img src={iconUsername} alt="" />
-                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
               </span>
               <input
+                value={username}
+                onChange={handleUsername}
                 type="text"
                 className="form-control"
                 placeholder="Username"
@@ -58,6 +98,8 @@ function Login() {
                 <img src={iconPassword} alt="" />
               </span>
               <input
+                value={password}
+                onChange={handlePassword}
                 type="password"
                 className="form-control"
                 placeholder="Password"
@@ -70,16 +112,20 @@ function Login() {
             </div>
             <p className="text-forgot">Forgot Password?</p>
             <div className="button-login">
-              <button type="button" className="btn btn-primary p-0" id="login">
+              <button
+                onClick={handleGetData}
+                type="button"
+                className="btn btn-primary p-0 btn-login"
+                id="login"
+              >
                 Login
               </button>
             </div>
             <p className="gapunya-akun text-center">
               Don’t have any account yet?
-              <a href="regist.html" className="daftar">
-                {" "}
+              <Link to={"/register"} className="daftar">
                 Sign up
-              </a>
+              </Link>
             </p>
           </div>
         </div>

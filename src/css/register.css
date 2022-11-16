@@ -1,0 +1,159 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: #E4E9F4;
+}
+
+.box{
+    width: 850px;
+    height: 601px;
+}
+
+.box-left-regist{
+    width: 50%;
+    height: 100%;
+    background-color: #fff;
+    border-bottom-left-radius: 26px;
+    border-top-left-radius: 26px;
+}
+
+.box-right-regist{
+    width: 50%;
+    height: 100%;
+    background-color: #2A5DC4;
+    border-bottom-right-radius: 26px;
+    border-top-right-radius: 26px;
+}
+
+.logo{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #2A5DC4;
+    padding-top: 76px;
+    padding-bottom: 24px;
+}
+
+.text-join{
+    font-weight: 400;
+    font-size: 20px;
+    padding-left: 52px;
+}
+
+.text-create{
+    font-weight: 400;
+    font-size: 14px;
+    color: #999999;
+    padding-left: 52px;
+}
+
+.input-group{
+    padding-left: 54px;
+    padding-right: 54px;
+}
+
+.btn-regist{
+    width: 310px;
+    height: 32px;
+    background-color: #2A5DC4 !important;
+    margin-left: 54px;
+}
+
+.punya-akun{
+    font-weight: 400;
+font-size: 12px;
+color: #000000;
+padding-top: 42px;
+}
+
+.punya-akun a{
+    text-decoration: none;
+    color: #2A5DC4;
+}
+
+.foto-regist{
+    padding-top: 124px;
+    padding-bottom: 82px;
+}
+
+.regist-title{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #fff;
+    padding-bottom: 8px;
+}
+
+.regist-text{
+    font-weight: 400;
+    font-size: 12px;
+    padding-left: 65px;
+    padding-right: 65px;
+    color: #fff;
+    z-index: 10;
+}
+
+.bulet1-regist {
+    margin-top: 13px;
+    margin-left: 16px;
+    z-index: 7;
+}
+
+.bulet2-regist {
+    margin-top: 64px;
+    margin-left: 348px;
+    z-index: 6;
+}
+
+.bulet3-regist {
+    padding-top: 475px;
+    padding-left: 267px;
+    z-index: 5;
+}
+
+/* RESPONSIVE REGISTER */
+
+@media only screen and (max-width: 600px) {
+    .box-left-regist{
+        width: 100%;
+        height: 100vh;
+        background-color: #fff;
+        border-bottom-left-radius: 0px;
+        border-top-left-radius: 0px;
+        padding-left: 200px;
+        padding-right: 200px;
+    }
+
+    .box-right-regist{
+        display: none;
+        width: 50%;
+        height: 100%;
+        background-color: #2A5DC4;
+        border-bottom-right-radius: 26px;
+        border-top-right-radius: 26px;
+    }
+
+    .box-left-regist .punya-akun{
+        margin-left: 50px;
+    }
+    
+
+    }
+
+    @media only screen and (max-width: 850px) {
+        .box-right-regist {
+            display: none;
+        }
+        .box-left-regist {
+            width: 100%;
+            height: 100vh;
+        }
+        .box-left-regist .button-register {
+            text-align: center;
+            margin-left: -54px;
+        }
+    }
