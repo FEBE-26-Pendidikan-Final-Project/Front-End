@@ -1,7 +1,7 @@
+import "../css/text-quiz.css";
 import React from "react";
 import Menu from "../components/Menu";
 import TextComponent from "../components/TextComponent";
-import "../css/text-quiz.css";
 
 function TextQuiz() {
   return (
