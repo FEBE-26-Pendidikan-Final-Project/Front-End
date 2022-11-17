@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Menu from "../components/Menu";
 import smiling from "../assets/icon/smiling.png";
 import sad from "../assets/icon/sad.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 function Score() {
+  const { userId } = useParams();
   const navigate = useNavigate();
   const [score, setScore] = useState(localStorage.getItem("score"));
+
   return (
     <div>
       <Menu />
@@ -35,7 +38,7 @@ function Score() {
               type="button"
               id="btn-ok"
               style={{ borderRadius: "20px" }}
-              onClick={() => navigate("/text-quiz")}
+              onClick={() => navigate(`/text-quiz/${userId}`)}
             >
               Ok
             </button>
