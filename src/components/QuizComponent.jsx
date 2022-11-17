@@ -8,12 +8,14 @@ import axios from "axios";
 
 function QuizComponent() {
   const navigate = useNavigate();
+  const [user, setUsers] = useState([]);
   const [answer, setAnswer] = useState();
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   // const dispatch = useDispatch();
   // const { quizz } = useSelector((state) => state.quiz);
   // console.log(quizz.quiz);
+  let { userId } = useParams();
   const { id } = useParams();
   // console.log(id);
   // useEffect(() => {
@@ -27,32 +29,13 @@ function QuizComponent() {
     });
   }, []);
 
-  const [timerMinutes, setTimerMinutes] = useState(5);
-  const [timerSeconds, setTimerSeconds] = useState(1);
-
-  var timer;
   useEffect(() => {
-    timer = setInterval(() => {
-      setTimerSeconds(timerSeconds - 1);
+    axios.get("https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users/7").then((res) => {
+      setUsers(res.data);
+    });
+  }, []);
 
-      if (timerSeconds === 1) {
-        setTimerMinutes(timerMinutes - 1);
-        setTimerSeconds(59);
-
-        if (timerMinutes >= 0 && timerMinutes < 1) {
-          setTimerMinutes(0);
-          setTimerSeconds(1);
-          swal("Waktu habis", "Waktumu habis", {
-            timer: 1000,
-          }).then(function () {
-            localStorage.setItem("score", 0);
-            navigate("/score");
-          });
-        }
-      }
-    }, 1000);
-    return () => clearInterval(timer);
-  });
+  console.log(user.point);
 
   // console.log(data);
   const handleSubmit = () => {
@@ -64,14 +47,17 @@ function QuizComponent() {
           timer: 1000,
         }).then(function () {
           localStorage.setItem("score", 100);
-          navigate("/score");
+          navigate(`/score/${userId}`);
+          axios.put(`https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users/${userId}`, {
+            point: user.point + 100,
+          });
         });
       } else {
         swal("Sorry", "Jawabanmu kurang tepat", "error", {
           timer: 1000,
         }).then(function () {
           localStorage.setItem("score", 0);
-          navigate("/score");
+          navigate(`/score/${userId}`);
         });
       }
     } else {
@@ -94,7 +80,7 @@ function QuizComponent() {
   return (
     <div>
       <section id="quiz-section" className="mx-2">
-        <Timer title={data.title} timerMinutes={timerMinutes} timerSeconds={timerSeconds} />
+        <Timer title={data.title} minute={10} second={1} userId={userId} navigation={`/score/${userId}`} />
         <div className="container mt-3 py-2 px-3 shadow-sm" style={{ backgroundColor: "#fff", borderRadius: "20px" }}>
           <p style={{ textAlign: "justify" }} className="mt-2" id="quiz">
             {/* {quizz.quiz.question.question1} */}

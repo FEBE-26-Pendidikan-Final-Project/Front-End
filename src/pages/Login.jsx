@@ -23,9 +23,7 @@ function Login() {
   };
 
   const handleGetData = async () => {
-    let res = await axios.get(
-      "https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users"
-    );
+    let res = await axios.get("https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users");
     let data = await res.data;
 
     const ambilData = () => {
@@ -39,12 +37,12 @@ function Login() {
       if (result < 1) {
         swal("Error!", "Username atau Password Salah!", "error", {
           timer: 1000,
-        })
+        });
       } else {
         swal("Success!", "Berhasil Masuk!", "success", {
           timer: 1000,
         }),
-        navigate("/text-quiz");
+          navigate(`/text-quiz/${result[0].id}`);
       }
     };
     ambilData();
@@ -65,14 +63,10 @@ function Login() {
               <img src={buletan3} alt="" />
             </div>
             <img src={imageLogin} className="foto-login" alt="" />
-            
 
             <div className="card-title">Tingkatkan Literasi Mu</div>
             <div className="card-text position-absolute">
-              <p className="">
-                Dengan Membaca maka kita akan kita akan berkhayal tentang dunia
-                akhirat
-              </p>
+              <p className="">Dengan Membaca maka kita akan kita akan berkhayal tentang dunia akhirat</p>
             </div>
           </div>
           <div className="box-right">
@@ -117,12 +111,7 @@ function Login() {
             </div>
             <p className="text-forgot">Forgot Password?</p>
             <div className="button-login">
-              <button
-                onClick={handleGetData}
-                type="button"
-                className="btn btn-primary p-0 btn-login"
-                id="login"
-              >
+              <button onClick={handleGetData} type="button" className="btn btn-primary p-0 btn-login" id="login">
                 Login
               </button>
             </div>

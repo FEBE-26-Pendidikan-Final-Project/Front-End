@@ -10,10 +10,11 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
-      <Route path="/text-quiz" element={<TextQuiz />} />
-      <Route path="/quiz/:id" element={<Quiz />} />
-      <Route path="/score" element={<Score />} />
+      <Route path="/text-quiz/:userId" element={<TextQuiz />} />
+      <Route path="/quiz/:userId/:id" element={<Quiz />} />
+      <Route path="/score/:userId" element={<Score />} />
       <Route path="/register" element={<Register />} />
+      <Route path="*" element={<Login />} />
     </Routes>
   );
 }
