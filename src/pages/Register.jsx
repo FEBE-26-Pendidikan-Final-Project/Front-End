@@ -44,7 +44,7 @@ function Register() {
     const ambilData = () => {
       const result = [];
       for (let i = 0; i < data.length; i++) {
-        if (data[i].name == username) {
+        if (data[i].email == email) {
           result.push(data[i]);
         }
       }
@@ -84,8 +84,8 @@ function Register() {
         }
       } else {
         swal("Error!", "Data Sudah Tersedia!", "error", {
-          timer: 1000,
-        })
+            timer: 1000,
+          })
       }
     };
     ambilData();

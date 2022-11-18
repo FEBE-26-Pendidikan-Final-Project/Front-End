@@ -11,11 +11,11 @@ import axios from "axios";
 
 function Login() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleUsername = (e) => {
-    setUsername(e.target.value);
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
   };
 
   const handlePassword = (e) => {
@@ -29,13 +29,13 @@ function Login() {
     const ambilData = () => {
       const result = [];
       for (let i = 0; i < data.length; i++) {
-        if (data[i].name == username && data[i].password == password) {
+        if (data[i].email == email && data[i].password == password) {
           result.push(data[i]);
         }
       }
 
       if (result < 1) {
-        swal("Error!", "Username atau Password Salah!", "error", {
+        swal("Error!", "Email atau Password Salah!", "error", {
           timer: 1000,
         });
       } else {
@@ -81,11 +81,11 @@ function Login() {
                 <img src={iconUsername} alt="" />
               </span>
               <input
-                value={username}
-                onChange={handleUsername}
+                value={email}
+                onChange={handleEmail}
                 type="text"
                 className="form-control"
-                placeholder="Username"
+                placeholder="Email"
                 aria-label="Username"
                 aria-describedby="basic-addon1"
                 name="username"
