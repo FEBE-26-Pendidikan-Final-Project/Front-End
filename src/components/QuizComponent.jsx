@@ -7,6 +7,8 @@ import swal from "sweetalert";
 import axios from "axios";
 
 function QuizComponent() {
+  const userId = localStorage.getItem("idUser");
+
   const navigate = useNavigate();
   const [user, setUsers] = useState([]);
   const [answer, setAnswer] = useState();
@@ -15,7 +17,6 @@ function QuizComponent() {
   // const dispatch = useDispatch();
   // const { quizz } = useSelector((state) => state.quiz);
   // console.log(quizz.quiz);
-  let { userId } = useParams();
   const { id } = useParams();
   // console.log(id);
   // useEffect(() => {
@@ -30,12 +31,12 @@ function QuizComponent() {
   }, []);
 
   useEffect(() => {
-    axios.get("https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users/7").then((res) => {
+    axios.get(`https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users/${userId}`).then((res) => {
       setUsers(res.data);
     });
   }, []);
 
-  console.log(user.point);
+  // console.log(user.point);
 
   // console.log(data);
   const handleSubmit = () => {
@@ -47,7 +48,7 @@ function QuizComponent() {
           timer: 1000,
         }).then(function () {
           localStorage.setItem("score", 100);
-          navigate(`/score/${userId}`);
+          navigate(`/score`);
           axios.put(`https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users/${userId}`, {
             point: user.point + 100,
           });
@@ -57,7 +58,7 @@ function QuizComponent() {
           timer: 1000,
         }).then(function () {
           localStorage.setItem("score", 0);
-          navigate(`/score/${userId}`);
+          navigate(`/score`);
         });
       }
     } else {
@@ -80,7 +81,7 @@ function QuizComponent() {
   return (
     <div>
       <section id="quiz-section" className="mx-2">
-        <Timer title={data.title} minute={10} second={1} userId={userId} navigation={`/score/${userId}`} />
+        <Timer title={data.title} minute={5} second={1} navigation={`/score`} />
         <div className="container mt-3 py-2 px-3 shadow-sm" style={{ backgroundColor: "#fff", borderRadius: "20px" }}>
           <p style={{ textAlign: "justify" }} className="mt-2" id="quiz">
             {/* {quizz.quiz.question.question1} */}
