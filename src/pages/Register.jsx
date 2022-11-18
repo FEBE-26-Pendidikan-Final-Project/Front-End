@@ -83,7 +83,9 @@ function Register() {
             });
         }
       } else {
-        alert("Data Sudah Tersedia");
+        swal("Error!", "Data Sudah Tersedia!", "error", {
+          timer: 1000,
+        })
       }
     };
     ambilData();
