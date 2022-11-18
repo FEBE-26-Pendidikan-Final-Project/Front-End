@@ -2,9 +2,14 @@ import React from "react";
 import home from "../assets/icon/home.svg";
 import account from "../assets/icon/account.svg";
 import logout from "../assets/icon/logout.svg";
-import {Link} from 'react-router-dom'
+import { Link, useNavigate } from "react-router-dom";
 
 function Menu() {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("idUser");
+    navigate("/");
+  };
   return (
     <div>
       <nav className="navbar">
@@ -20,9 +25,9 @@ function Menu() {
               <i className="bi bi-list primary"></i>
             </h2>
           </button>
-          <a className="navbar-brand mx-auto text-primary" href="#">
+          <Link className="navbar-brand mx-auto text-primary" to={"/home"}>
             Suka<span className="fw-bold">Baca</span>
-          </a>
+          </Link>
         </div>
       </nav>
 
@@ -36,22 +41,22 @@ function Menu() {
         <div className="offcanvas-body">
           <ul className="list-group">
             <li className="list-group-item">
-              <a href="class-list.html" className="nav-link">
+              <Link to={"/home"} className="nav-link">
                 <img src={home} alt="" className="mx-2" />
                 <span className="mx-3">Home</span>
-              </a>
+              </Link>
             </li>
             <li className="list-group-item">
-              <a href="" className="nav-link">
+              <Link to={"/account"} className="nav-link">
                 <img src={account} alt="" className="mx-2" />
                 <span className="mx-3">Account</span>
-              </a>
+              </Link>
             </li>
             <li className="list-group-item">
-              <Link to={'/'} className="nav-link">
+              <a onClick={handleLogout} className="nav-link" style={{ cursor: "pointer" }}>
                 <img src={logout} alt="" className="mx-2" />
                 <span className="mx-3">Logout</span>
-              </Link>
+              </a>
             </li>
           </ul>
         </div>

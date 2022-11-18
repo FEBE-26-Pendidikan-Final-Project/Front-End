@@ -6,6 +6,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 function Score() {
+  useEffect(() => {
+    if (localStorage.getItem("idUser") === null) {
+      navigate("/");
+    }
+  });
   const { userId } = useParams();
   const navigate = useNavigate();
   const [score, setScore] = useState(localStorage.getItem("score"));
@@ -38,7 +43,7 @@ function Score() {
               type="button"
               id="btn-ok"
               style={{ borderRadius: "20px" }}
-              onClick={() => navigate(`/text-quiz/${userId}`)}
+              onClick={() => navigate(`/home`)}
             >
               Ok
             </button>

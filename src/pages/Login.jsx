@@ -42,7 +42,8 @@ function Login() {
         swal("Success!", "Berhasil Masuk!", "success", {
           timer: 1000,
         }),
-          navigate(`/text-quiz/${result[0].id}`);
+          navigate(`/home`);
+        localStorage.setItem("idUser", result[0].id);
       }
     };
     ambilData();
