@@ -44,8 +44,8 @@ function QuizComponent() {
 
     if (answer != null) {
       if (answer == correctAnswer) {
-        swal("Good job!", "Jawabanmu benar!", "success", {
-          timer: 1000,
+        swal("Good job!", "your answer is correct!", "success", {
+          timer: 3000,
         }).then(function () {
           localStorage.setItem("score", 100);
           navigate(`/score`);
@@ -54,15 +54,15 @@ function QuizComponent() {
           });
         });
       } else {
-        swal("Sorry", "Jawabanmu kurang tepat", "error", {
-          timer: 1000,
+        swal("Sorry", "your answer is incorrect!", "error", {
+          timer: 3000,
         }).then(function () {
           localStorage.setItem("score", 0);
           navigate(`/score`);
         });
       }
     } else {
-      swal("Warning", "Harap pilih jawabanmu!", "warning", {
+      swal("Warning", "please choose your answer!", "warning", {
         timer: 1000,
       });
     }

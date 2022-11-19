@@ -56,12 +56,12 @@ function Register() {
           password == "" ||
           confirmPassword == ""
         ) {
-          swal("Error!", "Data Harus Terisi!", "error", {
-            timer: 1000,
+          swal("Error!", "data must be filled.", "warning", {
+            timer: 4000,
           })
         } else if (password != confirmPassword) {
-          swal("Error!", "Password Tidak Cocok", "error", {
-            timer: 1000,
+          swal("Error!", "password is incorrect.", "error", {
+            timer: 4000,
           })
         } else {
           axios
@@ -73,8 +73,8 @@ function Register() {
               point: 0,
             })
             .then((result) => {
-              swal("Good job!", "Akun Berhasil Dibuat!", "success", {
-                timer: 1000,
+              swal("Success!", "your account has been successfully created.", "success", {
+                timer: 3000,
               }),
                 navigate("/");
             })
@@ -83,8 +83,8 @@ function Register() {
             });
         }
       } else {
-        swal("Error!", "Data Sudah Tersedia!", "error", {
-            timer: 1000,
+        swal("Important Message!", "email already registered.", "warning", {
+            timer: 4000,
           })
       }
     };

@@ -35,11 +35,11 @@ function Login() {
       }
 
       if (result < 1) {
-        swal("Error!", "Email atau Password Salah!", "error", {
+        swal("Error!", "email or password is incorrect.", "error", {
           timer: 1000,
         });
       } else {
-        swal("Success!", "Berhasil Masuk!", "success", {
+        swal("Success!", "login successfully.", "success", {
           timer: 1000,
         }),
           navigate(`/home`);
@@ -74,7 +74,7 @@ function Login() {
             <div className="logo text-center">
               Suka<span className="tebal">Baca</span>
             </div>
-            <h5 className="text-sapa">Hello,Users!</h5>
+            <h5 className="text-sapa">Hello, Users!</h5>
             <p className="text-salam">welcome, please login to continue</p>
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">
@@ -110,7 +110,6 @@ function Login() {
                 required
               />
             </div>
-            <p className="text-forgot">Forgot Password?</p>
             <div className="button-login">
               <button onClick={handleGetData} type="button" className="btn btn-primary p-0 btn-login" id="login">
                 Login
