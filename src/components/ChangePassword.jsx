@@ -25,7 +25,7 @@ function ChangePassword() {
       if (willDelete) {
         axios.delete(`https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users/${userId}`)
         .then(res => {}).catch(err => console.log("error"))
-        swal("Account deleted successfully!", {
+        swal("account deleted successfully.", {
           icon: "success",
         }),
         localStorage.removeItem("idUser");
