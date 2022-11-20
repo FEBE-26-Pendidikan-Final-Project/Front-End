@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getQuiz, getQuizById } from "../redux/action/quizAction";
+import { getQuizById } from "../redux/action/quizAction";
 import Timer from "./Timer";
 
 function TextComponent() {
@@ -23,9 +23,6 @@ function TextComponent() {
   return (
     <div>
       <section id="text-quiz" className="mx-2">
-        {/* <h1>
-          {timerMinutes}:{timerSeconds}
-        </h1> */}
         <Timer title={quizz.title} minute={10} second={1} navigation={`/quiz/${id}`} />
         <div className="container mt-3 py-2 px-3 shadow-sm" style={{ backgroundColor: "#fff", borderRadius: "20px" }}>
           <h5 className="text-center mt-2" id="text-title">

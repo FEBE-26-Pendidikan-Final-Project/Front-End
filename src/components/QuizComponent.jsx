@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getQuiz } from "../redux/action/quizAction";
 import Timer from "./Timer";
 import swal from "sweetalert";
 import axios from "axios";
@@ -14,19 +12,11 @@ function QuizComponent() {
   const [answer, setAnswer] = useState();
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  // const dispatch = useDispatch();
-  // const { quizz } = useSelector((state) => state.quiz);
-  // console.log(quizz.quiz);
   const { id } = useParams();
-  // console.log(id);
-  // useEffect(() => {
-  //   dispatch(getQuiz(id));
-  // }, []);
   useEffect(() => {
     axios.get(`https://634c0ee3317dc96a30906a1a.mockapi.io/literation/${id}`).then((res) => {
       setData(res.data);
       setIsLoading(false);
-      // console.log(data);
     });
   }, []);
 
@@ -36,9 +26,6 @@ function QuizComponent() {
     });
   }, []);
 
-  // console.log(user.point);
-
-  // console.log(data);
   const handleSubmit = () => {
     const correctAnswer = data.quiz.question.answerCorrect;
 
@@ -84,7 +71,6 @@ function QuizComponent() {
         <Timer title={data.title} minute={5} second={1} navigation={`/score`} />
         <div className="container mt-3 py-2 px-3 shadow-sm" style={{ backgroundColor: "#fff", borderRadius: "20px" }}>
           <p style={{ textAlign: "justify" }} className="mt-2" id="quiz">
-            {/* {quizz.quiz.question.question1} */}
             {data.quiz.question.question1}
           </p>
           <form action="">
@@ -119,7 +105,6 @@ function QuizComponent() {
               <label className="form-check-label" htmlFor="choice1">
                 <span className="choice">B.</span>
                 <span className="mx-2" id="choiceText1">
-                  {/* {quizz.quiz.question.answer[1]} */}
                   {data.quiz.question.answer[1]}
                 </span>
               </label>
@@ -137,7 +122,6 @@ function QuizComponent() {
               <label className="form-check-label" htmlFor="choice2">
                 <span className="choice">C.</span>
                 <span className="mx-2" id="choiceText2">
-                  {/* {quizz.quiz.question.answer[2]} */}
                   {data.quiz.question.answer[2]}
                 </span>
               </label>
@@ -155,7 +139,6 @@ function QuizComponent() {
               <label className="form-check-label" htmlFor="choice3">
                 <span className="choice">D.</span>
                 <span className="mx-2" id="choiceText3">
-                  {/* {quizz.quiz.question.answer[3]} */}
                   {data.quiz.question.answer[3]}
                 </span>
               </label>

@@ -1,4 +1,9 @@
-import { FETCH_START, SUCCESS_GET_LITERATION, SUCCESS_GET_QUIZ, SUCCESS_GET_QUIZ_BY_ID } from "../action/quizAction";
+import {
+  FETCH_START,
+  SUCCESS_GET_LITERATION,
+  SUCCESS_GET_QUIZ,
+  SUCCESS_GET_QUIZ_BY_ID,
+} from "../action/quizAction";
 
 const initialState = {
   quizz: [],

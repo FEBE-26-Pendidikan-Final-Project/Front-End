@@ -1,18 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import LiterationList from "../components/LiterationList";
 import Menu from "../components/Menu";
 import "../css/text-quiz.css";
-import { getLiteration } from "../redux/action/quizAction";
 
 function Literation() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  // const dispatch = useDispatch();
-  // const { quizz, isLoading } = useSelector((state) => state.quiz);
   useEffect(() => {
     if (localStorage.getItem("idUser") === null) {
       navigate("/");

@@ -3,7 +3,6 @@ import Menu from "../components/Menu";
 import smiling from "../assets/icon/smiling.png";
 import sad from "../assets/icon/sad.png";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
 
 function Score() {
   useEffect(() => {
