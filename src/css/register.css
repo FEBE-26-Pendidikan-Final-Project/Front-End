@@ -119,26 +119,44 @@ padding-top: 42px;
 
 @media only screen and (max-width: 600px) {
     .box-left-regist{
-        width: 100%;
+        width: 100vw;
         height: 100vh;
         background-color: #fff;
         border-bottom-left-radius: 0px;
         border-top-left-radius: 0px;
-        padding-left: 200px;
-        padding-right: 200px;
     }
+    .box-left-regist .text-join {
+        padding-left: 30px;
+    }
+    .box-left-regist .text-create {
+        padding-left: 30px;
+    }
+    .box-left-regist .input-group {
+        padding-left: 30px;
+    }
+    .box-left-regist .button-register .btn-primary{
+        margin-left: 0;
+    }
+    .box-left-regist .button-register{
+        text-align: center;
+    }
+    .box-left-regist .logo {
+        padding-left: 0;
+        padding-right: 0;
+        text-align: center;
+      }
 
     .box-right-regist{
         display: none;
-        width: 50%;
-        height: 100%;
+        width: 0%;
+        height: 0%;
         background-color: #2A5DC4;
-        border-bottom-right-radius: 26px;
-        border-top-right-radius: 26px;
+        border-bottom-right-radius: 0px;
+        border-top-right-radius: 0px;
     }
 
     .box-left-regist .punya-akun{
-        margin-left: 50px;
+        text-align: center;
     }
     
 
@@ -149,11 +167,24 @@ padding-top: 42px;
             display: none;
         }
         .box-left-regist {
-            width: 100%;
+            width: 100vw;
             height: 100vh;
+        }
+        .box-left-regist .button-register .btn-primary {
+            text-align: center;
+            margin-left: 0;
         }
         .box-left-regist .button-register {
             text-align: center;
-            margin-left: -54px;
+            margin-left: 0;
         }
+        .box-left-regist .logo {
+            padding-left: 0;
+            padding-right: 0;
+            text-align: center;
+          }
+          .box-left-regist .punya-akun{
+            text-align: center;
+        }
+        
     }

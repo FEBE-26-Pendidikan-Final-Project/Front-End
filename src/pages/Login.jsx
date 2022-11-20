@@ -71,7 +71,7 @@ function Login() {
             </div>
           </div>
           <div className="box-right">
-            <div className="logo text-center">
+            <div className="logo">
               Suka<span className="tebal">Baca</span>
             </div>
             <h5 className="text-sapa">Hello, Users!</h5>
