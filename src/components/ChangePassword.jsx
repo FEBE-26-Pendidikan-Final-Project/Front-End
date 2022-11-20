@@ -75,7 +75,7 @@ function ChangePassword() {
           <div className="d-grid">
             <button className="btn btn-primary" onClick={changePass}>Save</button>
           </div>
-            <button className="btn btn-outline-danger d-flex ms-auto mt-3" onClick={deleteAcc}>Delete Account</button>      
+            <button className="btn btn-outline-danger d-flex ms-auto mt-3 " onClick={deleteAcc}>Delete Account</button>      
         </div>
       </div>
     </div>
