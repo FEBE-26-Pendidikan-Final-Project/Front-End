@@ -1,0 +1,226 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .wrapper {
+    margin-top: 4px;
+    background-color: #e4e9f4;
+  }
+  
+  .box {
+    width: 850px;
+    height: 601px;
+  }
+  
+  .box-left-teacher {
+    width: 50%;
+    height: 100%;
+    background-color: #14C38E;
+    border-bottom-left-radius: 26px;
+    border-top-left-radius: 26px;
+  }
+  
+  .box-right {
+    width: 50%;
+    height: 100%;
+    background-color: #fff;
+    border-bottom-right-radius: 26px;
+    border-top-right-radius: 26px;
+  }
+  
+  .foto-login {
+    padding-top: 87px;
+    z-index: 9;
+    /* padding-right: 30px;
+      padding-left: 30px; */
+  }
+  .bulet1 {
+    margin-top: 13px;
+    margin-left: 16px;
+    z-index: 7;
+  }
+  
+  .bulet2 {
+    margin-top: 64px;
+    margin-left: 348px;
+    z-index: 6;
+  }
+  
+  .bulet3 {
+    margin-top: 471px;
+    margin-left: 262px;
+    z-index: 5;
+  }
+  
+  .card-title {
+    padding-top: 35px;
+    padding-bottom: 35px;
+    /* padding-right: 95px;
+      padding-left: 95px; */
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .card-text {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    padding-left: 65px;
+    padding-right: 65px;
+    color: #fff;
+    z-index: 11;
+  }
+  
+  .logo-teacher {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #14C38E;
+    padding-top: 93px;
+    padding-bottom: 26px;
+    padding-left: 166px;
+    padding-right: 166px;
+  }
+  
+  .tebal-teacher {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    color: #14C38E;
+  }
+  
+  .text-sapa {
+    font-weight: 400;
+    font-size: 20px;
+    padding-left: 54px;
+    color: #000;
+  }
+  
+  .text-salam {
+    font-weight: 400;
+    font-size: 14px;
+    color: #999999;
+    padding-left: 54px;
+  }
+  
+  .input-group {
+    padding-left: 54px;
+    padding-right: 54px;
+  }
+  
+  .text-forgot {
+    font-weight: 400;
+    font-size: 12px;
+    color: #14C38E;
+    padding-left: 54px;
+  }
+  
+  .btn-teacher {
+    width: 310px;
+    height: 32px;
+    background-color: #14C38E !important;
+    border: none !important;
+    margin-left: 54px;
+  }
+  
+  .gapunya-akun {
+    font-weight: 400;
+    font-size: 12px;
+    color: #000000;
+    padding-top: 62px;
+  }
+  
+  .daftar-teacher {
+    color: #14C38E;
+    text-decoration: none;
+  }
+  .daftar-teacher:hover {
+    color: #0a9c71;
+    text-decoration: none;
+  }
+  
+  /* HOME */
+  
+  /* RESPONSIVE LOGIN */
+  
+  @media only screen and (max-width: 600px) {
+    .box-left-teacher {
+      display: none;
+      width: 0%;
+      height: 100%;
+      background-color: #2a5dc4;
+      border-bottom-left-radius: 26px;
+      border-top-left-radius: 26px;
+    }
+  
+    .box-right .button-login {
+      margin-right: 50px;
+    }
+  
+    .box-right {
+      width: 100vw;
+      height: 100vh;
+      background-color: #fff;
+      border-bottom-right-radius: 0px;
+      border-top-right-radius: 0px;
+    }
+    .box-right h5 {
+      padding-left: 30px;
+    }
+    .box-right .text-salam {
+      padding-left: 30px;
+    }
+    .box-right .input-group {
+      padding-left: 30px;
+    }
+    .box-right .button-login {
+      margin: 0;
+    }
+    .box-right .button-login .btn-primary {
+      margin: 0;
+      text-align: center;
+    }
+    .box-right .button-login{
+      text-align: center;
+    }
+    .box-right .logo-teacher {
+      padding-left: 0;
+      padding-right: 0;
+      text-align: center;
+    }
+  }
+  
+  @media only screen and (max-width: 850px) {
+      .box-left-teacher{
+          display: none;
+          width: 0%;
+          height: 100%;
+          background-color: #2A5DC4;
+          border-bottom-left-radius: 0px;
+          border-top-left-radius: 0px;
+      }
+      .box-right{
+          width: 100vw;
+          height: 100vh;
+          background-color: #fff;
+          border-bottom-right-radius: 0px;
+          border-top-right-radius: 0px;
+      }
+      .box-right .button-login .btn-primary {
+          margin: 0;
+          text-align: center;
+        }
+        .box-right .button-login{
+          text-align: center;
+        }
+        .box-right .logo-teacher {
+          padding-left: 0;
+          padding-right: 0;
+          text-align: center;
+        }
+    }
+  
