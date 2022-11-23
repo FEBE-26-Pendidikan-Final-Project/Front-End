@@ -8,6 +8,8 @@ import TextQuiz from "./pages/TextQuiz";
 import Home from "./pages/Home";
 import Literation from "./pages/Literation";
 import Account from "./pages/Account";
+import TeacherLogin from "./pages/TeacherLogin";
+import TeacherRegist from "./pages/TeacherRegist";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
       <Route path="/quiz/:id" element={<Quiz />} />
       <Route path="/score" element={<Score />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/teachlogin" element={<TeacherLogin/>} />
+      <Route path="/teachregist" element={<TeacherRegist/>} />
       <Route path="*" element={<Login />} />
     </Routes>
   );
