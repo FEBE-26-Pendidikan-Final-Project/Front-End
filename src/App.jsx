@@ -8,8 +8,11 @@ import TextQuiz from "./pages/TextQuiz";
 import Home from "./pages/Home";
 import Literation from "./pages/Literation";
 import Account from "./pages/Account";
-import TeacherLogin from "./pages/TeacherLogin";
-import TeacherRegist from "./pages/TeacherRegist";
+import TeacherLogin from "./pages/teacher/TeacherLogin";
+import TeacherRegist from "./pages/teacher/TeacherRegist";
+import TeacherHome from "./pages/teacher/TeacherHome";
+import TeacherAccount from "./pages/teacher/TeacherAccount";
+import JoinClass from "./components/JoinClass";
 
 function App() {
   return (
@@ -24,6 +27,8 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/teachlogin" element={<TeacherLogin/>} />
       <Route path="/teachregist" element={<TeacherRegist/>} />
+      <Route path="/teachhome" element={<TeacherHome/>} />
+      <Route path="/teachaccount" element={<TeacherAccount/>} />
       <Route path="*" element={<Login />} />
     </Routes>
   );

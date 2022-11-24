@@ -1,9 +1,9 @@
-import "../css/teacherlogin.css";
-import circleTeach1 from "../assets/icon/circleteach1.svg"
-import circleTeach2 from "../assets/icon/circleteach2.svg"
-import imageLogin from "../assets/img/loginpict.png";
-import iconUsername from "../assets/icon/teachuser.svg";
-import iconPassword from "../assets/icon/teachlock.svg";
+import "../../css/teacherlogin.css";
+import circleTeach1 from "../../assets/icon/circleteach1.svg"
+import circleTeach2 from "../../assets/icon/circleteach2.svg"
+import imageLogin from "../../assets/img/loginpict.png";
+import iconUsername from "../../assets/icon/teachuser.svg";
+import iconPassword from "../../assets/icon/teachlock.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
