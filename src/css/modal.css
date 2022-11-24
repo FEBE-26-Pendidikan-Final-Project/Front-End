@@ -8,7 +8,7 @@
 
 .modal-content {
     background-color: #2a5dc4 !important;
-    min-height: 14rem;
+    min-height: 100%;
     border-radius: 20px !important;
 }
 
@@ -32,6 +32,7 @@
     width: 7rem;
     height: 2rem;
     border-radius: 12px !important;
+    margin-top: 15px;
     margin-bottom: 20px;
 }
 
