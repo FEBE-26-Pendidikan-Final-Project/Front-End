@@ -11,8 +11,6 @@ function Home() {
     if (localStorage.getItem("idUser") === null) {
       navigate("/");
     }
-
-
   });
   return (
     <>
