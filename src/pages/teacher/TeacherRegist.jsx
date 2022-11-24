@@ -1,11 +1,11 @@
-import "../css/teachregist.css";
+import "../../css/teachregist.css";
 import React, { useState } from "react";
-import iconUsername from "../assets/icon/teachuser.svg";
-import iconPassword from "../assets/icon/teachlock.svg";
-import iconEmail from "../assets/icon/teachemail.svg";
-import circleTeach1 from "../assets/icon/circleteach1.svg"
-import circleTeach2 from "../assets/icon/circleteach2.svg"
-import imageRegister from "../assets/img/registpict.png";
+import iconUsername from "../../assets/icon/teachuser.svg";
+import iconPassword from "../../assets/icon/teachlock.svg";
+import iconEmail from "../../assets/icon/teachemail.svg";
+import circleTeach1 from "../../assets/icon/circleteach1.svg"
+import circleTeach2 from "../../assets/icon/circleteach2.svg"
+import imageRegister from "../../assets/img/registpict.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Alert } from "bootstrap";  
