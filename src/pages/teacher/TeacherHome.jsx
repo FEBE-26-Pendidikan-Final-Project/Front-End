@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Class from "../../components/Class";
 import TeacherMenu from '../../components/teacher/TeacherMenu';
+import TeacherModal from '../../components/teacher/TeacherModal';
 
 function TeacherHome() {
   const navigate = useNavigate();
@@ -27,9 +28,7 @@ function TeacherHome() {
             </form>
           </div>
           <div className="col-lg-2 my-2 d-grid">
-            <button type="button" className="btn btn-create" id="btn-join">
-              Create Class
-            </button>
+            <TeacherModal/>
           </div>
         </div>
       </div>
