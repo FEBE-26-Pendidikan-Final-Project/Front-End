@@ -28,7 +28,7 @@ function Literation() {
     navigate("/teacher/quiz");
   };
 
-  if (localStorage.getItem("role") === "teacher") {
+  if (localStorage.getItem("role") === "user") {
     return (
       <div>
         <TeacherMenu />
