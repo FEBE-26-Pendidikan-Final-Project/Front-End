@@ -13,6 +13,8 @@ import TeacherRegist from "./pages/teacher/TeacherRegist";
 import TeacherHome from "./pages/teacher/TeacherHome";
 import TeacherAccount from "./pages/teacher/TeacherAccount";
 import JoinClass from "./components/JoinClass";
+import TeacherQuiz from "./pages/teacher/TeacherQuiz";
+import QuizList from "./pages/teacher/QuizList";
 
 function App() {
   return (
@@ -25,10 +27,12 @@ function App() {
       <Route path="/quiz/:id" element={<Quiz />} />
       <Route path="/score" element={<Score />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/teachlogin" element={<TeacherLogin/>} />
-      <Route path="/teachregist" element={<TeacherRegist/>} />
-      <Route path="/teachhome" element={<TeacherHome/>} />
-      <Route path="/teachaccount" element={<TeacherAccount/>} />
+      <Route path="/teachlogin" element={<TeacherLogin />} />
+      <Route path="/teachregist" element={<TeacherRegist />} />
+      <Route path="/teachhome" element={<TeacherHome />} />
+      <Route path="/teachaccount" element={<TeacherAccount />} />
+      <Route path="/teacher/quizlist" element={<QuizList />} />
+      <Route path="/teacher/quiz" element={<TeacherQuiz />} />
       <Route path="*" element={<Login />} />
     </Routes>
   );
