@@ -6,7 +6,7 @@ import Menu from "../components/Menu";
 import TeacherMenu from "../components/teacher/TeacherMenu";
 import "../css/text-quiz.css";
 
-localStorage.setItem("role", "teacher");
+localStorage.setItem("role", "user");
 
 function Literation() {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ function Literation() {
     navigate("/teacher/quiz");
   };
 
-  if (localStorage.getItem("role") === "user") {
+  if (localStorage.getItem("role") === "teacher") {
     return (
       <div>
         <TeacherMenu />
