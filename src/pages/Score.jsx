@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 function Score() {
   useEffect(() => {
-    if (localStorage.getItem("idUser") === null) {
+    if (localStorage.getItem("token") === null) {
       navigate("/");
     }
   });
@@ -19,7 +19,13 @@ function Score() {
       <Menu />
       <section id="quiz-score" className="mx-2">
         <div className="container text-center">
-          <div className={score < 100 ? "alert alert-danger" : "alert alert-success"} role="alert" id="alert">
+          <div
+            className={
+              score < 100 ? "alert alert-danger" : "alert alert-success"
+            }
+            role="alert"
+            id="alert"
+          >
             {score < 100
               ? "Jangan putus asa, terus tingkatkan literasi membacamu."
               : "Tetap semangat dan terus tingkatkan literasi membacamu."}

@@ -14,7 +14,7 @@ function Literation() {
   const [data1, setData1] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    if (localStorage.getItem("idUser") === null) {
+    if (localStorage.getItem("token") === null) {
       navigate("/");
     }
   });
