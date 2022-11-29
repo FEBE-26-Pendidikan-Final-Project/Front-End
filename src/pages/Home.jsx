@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Class from "../components/Class";
 import Menu from "../components/Menu";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import JoinClass from "../components/JoinClass";
 
 function Home() {
   const navigate = useNavigate();
   useEffect(() => {
-    if (localStorage.getItem("idUser") === null) {
+    if (localStorage.getItem("token") === null) {
       navigate("/");
     }
   });
@@ -19,14 +19,20 @@ function Home() {
         <div className="row justify-content-between my-2">
           <div className="col-lg-3">
             <form className="d-flex" role="search">
-              <input className="form-control" type="search" placeholder="Search" aria-label="Search" id="search" />
+              <input
+                className="form-control"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+                id="search"
+              />
               <button className="btn" type="submit" id="btn-search">
                 <i className="bi bi-search"></i>
               </button>
             </form>
           </div>
           <div className="col-lg-2 my-2 d-grid">
-          <JoinClass/>
+            <JoinClass />
           </div>
         </div>
       </div>

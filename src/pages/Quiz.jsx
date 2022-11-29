@@ -4,7 +4,7 @@ import QuizComponent from "../components/QuizComponent";
 
 function Quiz() {
   useEffect(() => {
-    if (localStorage.getItem("idUser") === null) {
+    if (localStorage.getItem("token") === null) {
       navigate("/");
     }
   });

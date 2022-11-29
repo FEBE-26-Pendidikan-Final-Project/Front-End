@@ -6,22 +6,26 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Account() {
-  const userId = localStorage.getItem("idUser");
+  const tokenUser = localStorage.getItem("token");
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem("idUser") === null) {
+    if (localStorage.getItem("token") === null) {
       navigate("/");
     }
   });
-  if (localStorage.getItem("idUser") !== null) {
+  if (localStorage.getItem("token") !== null) {
     useEffect(() => {
-      axios.get(`https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users/${userId}`).then((res) => {
-        setData(res.data);
-        setIsLoading(false);
-      });
+      axios
+        .post(
+          `https://back-end-production-a765.up.railway.app/User/register${tokenUser}`
+        )
+        .then((result) => {
+          setData(result.data);
+          setIsLoading(false);
+        });
     }, []);
   }
 
