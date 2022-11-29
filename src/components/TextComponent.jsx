@@ -23,13 +23,13 @@ function TextComponent() {
   return (
     <div>
       <section id="text-quiz" className="mx-2">
-        <Timer title={quizz.title} minute={10} second={1} navigation={`/quiz/${id}`} />
+        <Timer title={quizz.nama} minute={10} second={1} navigation={`/quiz/${id}`} />
         <div className="container mt-3 py-2 px-3 shadow-sm" style={{ backgroundColor: "#fff", borderRadius: "20px" }}>
           <h5 className="text-center mt-2" id="text-title">
-            {quizz.title}
+            {quizz.nama}
           </h5>
           <p style={{ textAlign: "justify" }} id="literation-text">
-            {quizz.text}
+            {quizz.bacaan}
           </p>
         </div>
         <div className="container my-3">

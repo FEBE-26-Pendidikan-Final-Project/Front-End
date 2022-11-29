@@ -14,11 +14,13 @@ function QuizComponent() {
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
   useEffect(() => {
-    axios.get(`https://634c0ee3317dc96a30906a1a.mockapi.io/literation/${id}`).then((res) => {
+    axios.get(`https://back-end-production-a765.up.railway.app/quiz/${id}`).then((res) => {
       setData(res.data);
       setIsLoading(false);
     });
   }, []);
+
+  console.log(data.doc);
 
   useEffect(() => {
     axios.get(`https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users/${userId}`).then((res) => {
@@ -27,7 +29,7 @@ function QuizComponent() {
   }, []);
 
   const handleSubmit = () => {
-    const correctAnswer = data.quiz.question.answerCorrect;
+    const correctAnswer = data.doc.soal.correctAnswer;
 
     if (answer != null) {
       if (answer == correctAnswer) {
@@ -68,10 +70,10 @@ function QuizComponent() {
   return (
     <div>
       <section id="quiz-section" className="mx-2">
-        <Timer title={data.title} minute={5} second={1} navigation={`/score`} />
+        <Timer title={data.doc.nama} minute={5} second={1} navigation={`/score`} />
         <div className="container mt-3 py-2 px-3 shadow-sm" style={{ backgroundColor: "#fff", borderRadius: "20px" }}>
           <p style={{ textAlign: "justify" }} className="mt-2" id="quiz">
-            {data.quiz.question.question1}
+            {data.doc.soal.question}
           </p>
           <form action="">
             <div className="form-check mb-3">
@@ -88,7 +90,7 @@ function QuizComponent() {
                 <span className="choice">A.</span>
                 <span className="mx-2" id="choiceText0">
                   {/* {quizz.quiz.question.answer[0]} */}
-                  {data.quiz.question.answer[0]}
+                  {data.doc.soal.answer[0]}
                 </span>
               </label>
             </div>
@@ -105,7 +107,7 @@ function QuizComponent() {
               <label className="form-check-label" htmlFor="choice1">
                 <span className="choice">B.</span>
                 <span className="mx-2" id="choiceText1">
-                  {data.quiz.question.answer[1]}
+                  {data.doc.soal.answer[1]}
                 </span>
               </label>
             </div>
@@ -122,7 +124,7 @@ function QuizComponent() {
               <label className="form-check-label" htmlFor="choice2">
                 <span className="choice">C.</span>
                 <span className="mx-2" id="choiceText2">
-                  {data.quiz.question.answer[2]}
+                  {data.doc.soal.answer[2]}
                 </span>
               </label>
             </div>
@@ -139,7 +141,7 @@ function QuizComponent() {
               <label className="form-check-label" htmlFor="choice3">
                 <span className="choice">D.</span>
                 <span className="mx-2" id="choiceText3">
-                  {data.quiz.question.answer[3]}
+                  {data.doc.soal.answer[3]}
                 </span>
               </label>
             </div>

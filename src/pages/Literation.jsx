@@ -11,18 +11,28 @@ localStorage.setItem("role", "user");
 function Literation() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
+  const [data1, setData1] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     if (localStorage.getItem("idUser") === null) {
       navigate("/");
     }
   });
+  // useEffect(() => {
+  //   axios.get("https://634c0ee3317dc96a30906a1a.mockapi.io//literation").then((res) => {
+  //     setData(res.data);
+  //     setIsLoading(false);
+  //   });
+  // }, []);
   useEffect(() => {
-    axios.get("https://634c0ee3317dc96a30906a1a.mockapi.io//literation").then((res) => {
+    axios.get("https://back-end-production-a765.up.railway.app/quiz").then((res) => {
       setData(res.data);
       setIsLoading(false);
     });
   }, []);
+
+  console.log(data);
+  // console.log(data1);
 
   const addQuiz = () => {
     navigate("/teacher/quiz");
@@ -83,9 +93,10 @@ function Literation() {
             </div>
           ) : (
             data.map((item, index) => {
+              console.log(item);
               return (
                 <div key={index}>
-                  <LiterationList id={item.id} title={item.title} />
+                  <LiterationList id={item._id} title={item.nama} />
                 </div>
               );
             })
