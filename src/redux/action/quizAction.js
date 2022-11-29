@@ -36,19 +36,16 @@ function successGetLiteration(data) {
 export function getQuizById(id) {
   return async (dispatch) => {
     dispatch(fetchStart());
-    const result = await axios.get(
-      `https://634c0ee3317dc96a30906a1a.mockapi.io//literation/${id}`
-    );
-    dispatch(successGetQuizByID(result.data));
+    const result = await axios.get(`https://back-end-production-a765.up.railway.app/quiz/${id}`);
+    dispatch(successGetQuizByID(result.data.doc));
+    console.log(result.data.doc);
   };
 }
 
 export function getQuiz(id) {
   return async (dispatch) => {
     dispatch(fetchStart());
-    const result = await axios.get(
-      `https://634c0ee3317dc96a30906a1a.mockapi.io//literation/${id}`
-    );
+    const result = await axios.get(`https://back-end-production-a765.up.railway.app/quiz/${id}`);
     dispatch(successGetQuiz(result.data));
   };
 }
@@ -56,9 +53,7 @@ export function getQuiz(id) {
 export function getLiteration() {
   return async (dispatch) => {
     dispatch(fetchStart());
-    const result = await axios.get(
-      `https://634c0ee3317dc96a30906a1a.mockapi.io//literation`
-    );
+    const result = await axios.get(`https://634c0ee3317dc96a30906a1a.mockapi.io//literation`);
     dispatch(successGetLiteration(result.data));
   };
 }

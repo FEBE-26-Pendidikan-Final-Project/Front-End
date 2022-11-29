@@ -11,20 +11,28 @@ localStorage.setItem("role", "user");
 function Literation() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
+  const [data1, setData1] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     if (localStorage.getItem("token") === null) {
       navigate("/");
     }
   });
+  // useEffect(() => {
+  //   axios.get("https://634c0ee3317dc96a30906a1a.mockapi.io//literation").then((res) => {
+  //     setData(res.data);
+  //     setIsLoading(false);
+  //   });
+  // }, []);
   useEffect(() => {
-    axios
-      .get("https://634c0ee3317dc96a30906a1a.mockapi.io//literation")
-      .then((res) => {
-        setData(res.data);
-        setIsLoading(false);
-      });
+    axios.get("https://back-end-production-a765.up.railway.app/quiz").then((res) => {
+      setData(res.data);
+      setIsLoading(false);
+    });
   }, []);
+
+  console.log(data);
+  // console.log(data1);
 
   const addQuiz = () => {
     navigate("/teacher/quiz");
@@ -37,22 +45,12 @@ function Literation() {
 
         <div className="container mt-5">
           <div className="d-grid">
-            <button
-              className="btn mb-3"
-              style={{ backgroundColor: "#14c38e", color: "#fff" }}
-              onClick={addQuiz}
-            >
+            <button className="btn mb-3" style={{ backgroundColor: "#14c38e", color: "#fff" }} onClick={addQuiz}>
               + Add Quiz
             </button>
           </div>
-          <div
-            className="container-fluid py-3 px-3 shadow-sm"
-            style={{ backgroundColor: "#fff", borderRadius: "20px" }}
-          >
-            <div
-              className="container bg-primary"
-              style={{ opacity: "0.5", height: "100px", borderRadius: "20px" }}
-            ></div>
+          <div className="container-fluid py-3 px-3 shadow-sm" style={{ backgroundColor: "#fff", borderRadius: "20px" }}>
+            <div className="container bg-primary" style={{ opacity: "0.5", height: "100px", borderRadius: "20px" }}></div>
             <div className="text-center h4 mt-4">Ilmu Pengetahuan Alam</div>
             <p className="text-center">Literasi bacaan tengtang alam</p>
           </div>
@@ -81,14 +79,8 @@ function Literation() {
     <div>
       <Menu />
       <div className="container mt-5">
-        <div
-          className="container-fluid py-3 px-3 shadow-sm"
-          style={{ backgroundColor: "#fff", borderRadius: "20px" }}
-        >
-          <div
-            className="container bg-primary"
-            style={{ opacity: "0.5", height: "100px", borderRadius: "20px" }}
-          ></div>
+        <div className="container-fluid py-3 px-3 shadow-sm" style={{ backgroundColor: "#fff", borderRadius: "20px" }}>
+          <div className="container bg-primary" style={{ opacity: "0.5", height: "100px", borderRadius: "20px" }}></div>
           <div className="text-center h4 mt-4">Ilmu Pengetahuan Alam</div>
           <p className="text-center">Literasi bacaan tengtang alam</p>
         </div>
@@ -101,9 +93,10 @@ function Literation() {
             </div>
           ) : (
             data.map((item, index) => {
+              console.log(item);
               return (
                 <div key={index}>
-                  <LiterationList id={item.id} title={item.title} />
+                  <LiterationList id={item._id} title={item.nama} />
                 </div>
               );
             })
