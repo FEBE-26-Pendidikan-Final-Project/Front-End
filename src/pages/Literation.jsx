@@ -13,15 +13,17 @@ function Literation() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    if (localStorage.getItem("idUser") === null) {
+    if (localStorage.getItem("token") === null) {
       navigate("/");
     }
   });
   useEffect(() => {
-    axios.get("https://634c0ee3317dc96a30906a1a.mockapi.io//literation").then((res) => {
-      setData(res.data);
-      setIsLoading(false);
-    });
+    axios
+      .get("https://634c0ee3317dc96a30906a1a.mockapi.io//literation")
+      .then((res) => {
+        setData(res.data);
+        setIsLoading(false);
+      });
   }, []);
 
   const addQuiz = () => {
@@ -35,12 +37,22 @@ function Literation() {
 
         <div className="container mt-5">
           <div className="d-grid">
-            <button className="btn mb-3" style={{ backgroundColor: "#14c38e", color: "#fff" }} onClick={addQuiz}>
+            <button
+              className="btn mb-3"
+              style={{ backgroundColor: "#14c38e", color: "#fff" }}
+              onClick={addQuiz}
+            >
               + Add Quiz
             </button>
           </div>
-          <div className="container-fluid py-3 px-3 shadow-sm" style={{ backgroundColor: "#fff", borderRadius: "20px" }}>
-            <div className="container bg-primary" style={{ opacity: "0.5", height: "100px", borderRadius: "20px" }}></div>
+          <div
+            className="container-fluid py-3 px-3 shadow-sm"
+            style={{ backgroundColor: "#fff", borderRadius: "20px" }}
+          >
+            <div
+              className="container bg-primary"
+              style={{ opacity: "0.5", height: "100px", borderRadius: "20px" }}
+            ></div>
             <div className="text-center h4 mt-4">Ilmu Pengetahuan Alam</div>
             <p className="text-center">Literasi bacaan tengtang alam</p>
           </div>
@@ -69,8 +81,14 @@ function Literation() {
     <div>
       <Menu />
       <div className="container mt-5">
-        <div className="container-fluid py-3 px-3 shadow-sm" style={{ backgroundColor: "#fff", borderRadius: "20px" }}>
-          <div className="container bg-primary" style={{ opacity: "0.5", height: "100px", borderRadius: "20px" }}></div>
+        <div
+          className="container-fluid py-3 px-3 shadow-sm"
+          style={{ backgroundColor: "#fff", borderRadius: "20px" }}
+        >
+          <div
+            className="container bg-primary"
+            style={{ opacity: "0.5", height: "100px", borderRadius: "20px" }}
+          ></div>
           <div className="text-center h4 mt-4">Ilmu Pengetahuan Alam</div>
           <p className="text-center">Literasi bacaan tengtang alam</p>
         </div>

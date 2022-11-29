@@ -17,7 +17,8 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [point, setPoint] = useState("");
+  const validasiAngka = /^[0-9]+$/;
+  // const [point, setPoint] = useState("");
 
   const handleUsername = (e) => {
     setUsername(e.target.value);
@@ -35,61 +36,123 @@ function Register() {
     setConfirmPassword(e.target.value);
   };
 
-  const handleApi = async (e) => {
-    let res = await axios.get(
-      "https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users"
-    );
-    let data = await res.data;
-
-    const ambilData = () => {
-      const result = [];
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].email == email) {
-          result.push(data[i]);
-        }
-      }
-
-      if (result < 1) {
-        if (
-          username == "" ||
-          email == "" ||
-          password == "" ||
-          confirmPassword == ""
-        ) {
-          swal("Error!", "data must be filled.", "warning", {
-            timer: 4000,
-          })
-        } else if (password != confirmPassword) {
-          swal("Error!", "password is incorrect.", "error", {
-            timer: 4000,
-          })
-        } else {
-          axios
-            .post("https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users", {
-              name: username,
-              email: email,
-              password: password,
-              confirm: confirmPassword,
-              point: 0,
-            })
-            .then((result) => {
-              swal("Success!", "your account has been successfully created.", "success", {
-                timer: 3000,
-              }),
-                navigate("/");
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        }
-      } else {
-        swal("Important Message!", "email already registered.", "warning", {
-            timer: 4000,
-          })
-      }
+  const clickRegist = (e) => {
+    const data = {
+      nama: username,
+      email: email,
+      password: password,
     };
-    ambilData();
+    axios
+      .post(
+        "https://back-end-production-a765.up.railway.app/User/register",
+        data
+      )
+      .then((result) => {
+        if (result) {
+          if (result.data) {
+            setUsername("");
+            setEmail("");
+            setPassword("");
+            setConfirmPassword("");
+            swal(
+              "Success!",
+              "your account has been successfully created.",
+              "success",
+              {
+                timer: 3000,
+              }
+            );
+            console.log(result);
+          }
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+        if (!username) {
+          swal("Error!", "username tidak boleh kosong", "error", {
+            timer: 3000,
+          });
+        } else if (!email) {
+          swal("Error!", "email tidak boleh kosong", "error", {
+            timer: 3000,
+          });
+        } else if (password !== confirmPassword) {
+          swal("Error!", "password tidak cocok", "error", {
+            timer: 3000,
+          });
+        } else if (password.length < 6) {
+          swal("Error!", "password harus lebih dari 6 karakter", "error", {
+            timer: 3000,
+          });
+        } else if (e.response.data.message == "Email Sudah digunakan !") {
+          swal("Error!", "email sudah digunakan", "error", {
+            timer: 3000,
+          });
+        } else {
+        }
+      });
   };
+
+  // const handleApi = async (e) => {
+  //   let res = await axios.get(
+  //     "https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users"
+  //   );
+  //   let data = await res.data;
+
+  //   const ambilData = () => {
+  //     const result = [];
+  //     for (let i = 0; i < data.length; i++) {
+  //       if (data[i].email == email) {
+  //         result.push(data[i]);
+  //       }
+  //     }
+
+  //     if (result < 1) {
+  //       if (
+  //         username == "" ||
+  //         email == "" ||
+  //         password == "" ||
+  //         confirmPassword == ""
+  //       ) {
+  //         swal("Error!", "data must be filled.", "warning", {
+  //           timer: 4000,
+  //         });
+  //       } else if (password != confirmPassword) {
+  //         swal("Error!", "password is incorrect.", "error", {
+  //           timer: 4000,
+  //         });
+  //       } else {
+  //         axios
+  //           .post("https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users", {
+  //             name: username,
+  //             email: email,
+  //             password: password,
+  //             confirm: confirmPassword,
+  //             point: 0,
+  //           })
+  //           .then((result) => {
+  //             swal(
+  //               "Success!",
+  //               "your account has been successfully created.",
+  //               "success",
+  //               {
+  //                 timer: 3000,
+  //               }
+  //             ),
+  //               navigate("/");
+  //           })
+  //           .catch((error) => {
+  //             console.log(error);
+  //           });
+  //       }
+  //     } else {
+  //       swal("Important Message!", "email already registered.", "warning", {
+  //         timer: 4000,
+  //       });
+  //     }
+  //   };
+  //   ambilData();
+  // };
 
   return (
     <>
@@ -167,7 +230,7 @@ function Register() {
             </div>
             <div className="button-register">
               <button
-                onClick={(e) => handleApi(e)}
+                onClick={(e) => clickRegist(e)}
                 type="button"
                 className="btn btn-primary btn-regist p-0"
                 id="register"

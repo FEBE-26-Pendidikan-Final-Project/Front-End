@@ -5,7 +5,7 @@ import TextComponent from "../components/TextComponent";
 
 function TextQuiz() {
   useEffect(() => {
-    if (localStorage.getItem("idUser") === null) {
+    if (localStorage.getItem("token") === null) {
       navigate("/");
     }
   });
