@@ -27,9 +27,7 @@ function Account() {
   if (localStorage.getItem("token") !== null) {
     useEffect(() => {
       authAxios
-        .get(
-          `https://back-end-production-a765.up.railway.app/User/id/${idUser}`
-        )
+        .get(`id/${idUser}`)
         .then((result) => {
           console.log(result.data.message);
           setIsLoading(false);

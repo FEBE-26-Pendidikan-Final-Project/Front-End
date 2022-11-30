@@ -21,7 +21,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/home" element={<Home />} />
-      <Route path="/literations" element={<Literation />} />
+      <Route path="/literations/:id" element={<Literation />} />
       <Route path="/account" element={<Account />} />
       <Route path="/text-quiz/:id" element={<TextQuiz />} />
       <Route path="/quiz/:id" element={<Quiz />} />
@@ -32,7 +32,7 @@ function App() {
       <Route path="/teachhome" element={<TeacherHome />} />
       <Route path="/teachaccount" element={<TeacherAccount />} />
       <Route path="/teacher/quizlist" element={<QuizList />} />
-      <Route path="/teacher/quiz" element={<TeacherQuiz />} />
+      <Route path="/teacher/quiz/:id" element={<TeacherQuiz />} />
       <Route path="*" element={<Login />} />
     </Routes>
   );
