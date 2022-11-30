@@ -30,13 +30,23 @@ function ChangePassword() {
     }).then((willDelete) => {
       if (willDelete) {
         axios
-          .delete(`https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users/${userId}`)
-          .then((res) => {})
-          .catch((err) => console.log("error"));
+          .delete(
+            `https://back-end-production-a765.up.railway.app/User/${idUser}`,
+            {
+              headers: header,
+            }
+          )
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
         swal("account deleted successfully.", {
           icon: "success",
         }),
-          localStorage.removeItem("idUser");
+          localStorage.removeItem("id");
+        localStorage.removeItem("token");
         navigate("/");
       }
     });
@@ -54,6 +64,10 @@ function ChangePassword() {
     setEmail(e.target.value);
   };
 
+  // const handlePassword = (e) => {
+  //   setPassword(e.target.value);
+  // };
+
   const changeData = () => {
     if (tokenUser === null) {
       navigate("/");
@@ -68,6 +82,7 @@ function ChangePassword() {
           {
             nama: username,
             email: email,
+            // password: password,
           },
           {
             headers: header,
@@ -106,10 +121,10 @@ function ChangePassword() {
           <p className="text-change pt-3">change your username right here</p>
           <div className="mb-3 col-md-6">
             <input
-              type="password"
+              type="text"
               className="form-control "
               id="exampleFormControlInput1"
-              placeholder="Change Password"
+              placeholder="Change Username"
               value={username}
               onChange={handleUsername}
             />
@@ -117,14 +132,25 @@ function ChangePassword() {
           <p className="text-change">change your email right here</p>
           <div className="mb-3 col-md-6">
             <input
+              type="email"
+              className="form-control "
+              id="exampleFormControlInput1"
+              placeholder="Change Email"
+              value={email}
+              onChange={handleEmail}
+            />
+          </div>{" "}
+          {/* <p className="text-change">change your password right here</p>
+          <div className="mb-3 col-md-6">
+            <input
               type="password"
               className="form-control "
               id="exampleFormControlInput1"
               placeholder="Change Password"
-              value={email}
-              onChange={handleEmail}
+              value={password}
+              onChange={handlePassword}
             />
-          </div>
+          </div> */}
           <div className="d-grid">
             <button className="btn btn-primary" onClick={changeData}>
               Save

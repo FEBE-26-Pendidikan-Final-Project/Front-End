@@ -5,12 +5,19 @@ import swal from "sweetalert";
 
 function TeacherChanges() {
   const navigate = useNavigate();
-  const userId = localStorage.getItem("idUser");
-  const [password, setPassword] = useState("");
+  const adminId = localStorage.getItem("id");
+  const tokenAdmin = localStorage.getItem("token");
+  // const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
 
   //   if (userId === null) {
   //     navigate("/");
   //   }
+
+  const header = {
+    authadmin: localStorage.getItem("token"),
+  };
 
   const deleteAcc = () => {
     swal({
@@ -22,46 +29,73 @@ function TeacherChanges() {
     }).then((willDelete) => {
       if (willDelete) {
         axios
-          .delete(`https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users/${userId}`)
-          .then((res) => {})
-          .catch((err) => console.log("error"));
+          .delete(
+            `https://back-end-production-a765.up.railway.app/Admin/${adminId}`,
+            {
+              headers: header,
+            }
+          )
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
         swal("account deleted successfully.", {
           icon: "success",
         }),
-          localStorage.removeItem("idUser");
-        navigate("/");
+          localStorage.removeItem("id");
+        navigate("/teachlogin");
       }
     });
   };
 
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
+  const handleUsername = (e) => {
+    setUsername(e.target.value);
   };
 
-  const changePass = () => {
-    if (userId === null) {
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  // const handlePassword = (e) => {
+  //   setPassword(e.target.value);
+  // };
+
+  const changeData = () => {
+    if (tokenAdmin === null) {
       navigate("/");
-    } else if (password == "") {
+    } else if (username == "") {
       swal("Error!", "password must be filled.", "warning", {
         timer: 4000,
       });
     } else {
       axios
-        .put(`https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users/${userId}`, {
-          password: password,
-          confirm: password,
-        })
-        .then((result) => {
-          swal(
-            "Success!",
-            "password has been changed successfully.",
-            "success",
-            {
-              timer: 3000,
-            }
-          ),
-            navigate("/home");
-        }, setPassword(""))
+        .put(
+          `https://back-end-production-a765.up.railway.app/Admin/${adminId}`,
+          {
+            nama: username,
+            email: email,
+          },
+          {
+            headers: header,
+          }
+        )
+        .then(
+          (result) => {
+            swal(
+              "Success!",
+              "password has been changed successfully.",
+              "success",
+              {
+                timer: 3000,
+              }
+            ),
+              navigate("/home");
+          },
+          setUsername(""),
+          setEmail("")
+        )
         .catch((error) => {
           console.log(error);
         });
@@ -75,20 +109,42 @@ function TeacherChanges() {
         style={{ borderRadius: "20px", border: "0px", padding: "20px" }}
       >
         <div className="card-body">
-          <h5 className="">Change Password</h5>
-          <p className="">Change your password right here</p>
-          <div className="mb-3">
+          <h5 className="text-center">Change Account Data</h5>
+          <p className="text-change pt-3">change your username right here</p>
+          <div className="mb-3 col-md-6">
+            <input
+              type="text"
+              className="form-control "
+              id="exampleFormControlInput1"
+              placeholder="Change Username"
+              value={username}
+              onChange={handleUsername}
+            />
+          </div>
+          <p className="text-change">change your email right here</p>
+          <div className="mb-3 col-md-6">
+            <input
+              type="email"
+              className="form-control "
+              id="exampleFormControlInput1"
+              placeholder="Change Email"
+              value={email}
+              onChange={handleEmail}
+            />
+          </div>{" "}
+          {/* <p className="text-change">change your password right here</p>
+          <div className="mb-3 col-md-6">
             <input
               type="password"
-              className="form-control"
+              className="form-control "
               id="exampleFormControlInput1"
               placeholder="Change Password"
               value={password}
               onChange={handlePassword}
             />
-          </div>
+          </div> */}
           <div className="d-grid">
-            <button className="btn btn-success" onClick={changePass}>
+            <button className="btn btn-success" onClick={changeData}>
               Save
             </button>
           </div>

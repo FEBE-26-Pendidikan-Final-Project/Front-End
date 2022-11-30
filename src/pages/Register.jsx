@@ -62,6 +62,7 @@ function Register() {
                 timer: 3000,
               }
             );
+            navigate("/");
             console.log(result);
           }
         }

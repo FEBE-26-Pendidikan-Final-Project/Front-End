@@ -8,7 +8,9 @@ import { Link, useNavigate } from "react-router-dom";
 function TeacherMenu() {
   const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.removeItem("idUser");
+    localStorage.removeItem("id");
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
     navigate("/teachlogin");
   };
   return (

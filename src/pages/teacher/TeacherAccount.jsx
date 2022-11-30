@@ -16,7 +16,7 @@ function TeacherAccount() {
   const navigate = useNavigate();
 
   const header = {
-    authuser: localStorage.getItem("token"),
+    authadmin: localStorage.getItem("token"),
   };
 
   useEffect(() => {
@@ -28,7 +28,7 @@ function TeacherAccount() {
     useEffect(() => {
       axios
         .get(
-          `https://back-end-production-a765.up.railway.app/User/id/${idAdmin}`,
+          `https://back-end-production-a765.up.railway.app/Admin/${idAdmin}`,
           { headers: header }
         )
         .then((result) => {
@@ -55,7 +55,7 @@ function TeacherAccount() {
         <div className="container my-2 mb-5">
           <div className="row justify-content-center">
             <div className="col-md-4">
-              <TeacherComponent />
+              <TeacherComponent username={data.nama} email={data.email} />
             </div>
             <div className="col-md-8">
               <TeacherChanges />
