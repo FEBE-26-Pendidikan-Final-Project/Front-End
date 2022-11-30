@@ -6,10 +6,18 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Account() {
+  const idUser = localStorage.getItem("id");
   const tokenUser = localStorage.getItem("token");
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+
+  const authAxios = axios.create({
+    baseURL: "https://back-end-production-a765.up.railway.app/User/",
+    headers: {
+      authuser: `${tokenUser}`,
+    },
+  });
 
   useEffect(() => {
     if (localStorage.getItem("token") === null) {
@@ -18,13 +26,17 @@ function Account() {
   });
   if (localStorage.getItem("token") !== null) {
     useEffect(() => {
-      axios
-        .post(
-          `https://back-end-production-a765.up.railway.app/User/register${tokenUser}`
+      authAxios
+        .get(
+          `https://back-end-production-a765.up.railway.app/User/id/${idUser}`
         )
         .then((result) => {
-          setData(result.data);
+          console.log(result.data.message);
           setIsLoading(false);
+          setData(result.data.message);
+        })
+        .catch((error) => {
+          console.log(error);
         });
     }, []);
   }
@@ -42,11 +54,9 @@ function Account() {
         <div className="container my-2 mb-5">
           <div className="row justify-content-center">
             <div className="col-md-4">
-              <UserComponent username={data.name} point={data.point} />
+              <UserComponent username={data.nama} email={data.email} />
             </div>
-            <div className="col-md-8">
-              <ChangePassword />
-            </div>
+            <div className="col-md-8">{/* <ChangePassword /> */}</div>
           </div>
         </div>
       )}

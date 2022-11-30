@@ -11,6 +11,7 @@ import axios from "axios";
 
 function Login() {
   const navigate = useNavigate();
+  const tokenUser = localStorage.getItem("token");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
@@ -35,6 +36,7 @@ function Login() {
           timer: 1000,
         }),
           localStorage.setItem("token", result.data.token);
+        localStorage.setItem("id", result.data.id);
         console.log(result);
         setRedirect(true);
       })

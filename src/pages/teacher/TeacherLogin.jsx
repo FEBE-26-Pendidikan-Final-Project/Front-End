@@ -33,7 +33,7 @@ function TeacherLogin() {
           timer: 1000,
         }),
           localStorage.setItem("token", result.data.token);
-        console.log("token", result.data.token);
+        console.log(result);
         navigate("/home");
       })
       .catch((err) => {

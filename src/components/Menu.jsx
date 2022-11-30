@@ -8,6 +8,9 @@ function Menu() {
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("id");
+    localStorage.removeItem("role");
+    localStorage.removeItem("score");
     navigate("/");
   };
   return (
