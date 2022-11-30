@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function TeacherQuizComponent() {
   const navigate = useNavigate();
@@ -16,29 +16,32 @@ function TeacherQuizComponent() {
   const [correctAnswer, setCorrectAnswer] = useState();
   const choice = [choiceA, choiceB, choiceC, choiceD];
 
+  const idClass = useParams();
+  // console.log(idClass.id);
+
+  const header = {
+    authadmin: localStorage.getItem("token"),
+  };
+
   const handleSave = (e) => {
     e.preventDefault();
-    // console.log(title);
-    // console.log(literation);
-    // console.log(quiz);
-    // console.log(choiceA);
-    // console.log(choiceB);
-    // console.log(choiceC);
-    // console.log(choiceD);
-    // console.log(choice);
-    // console.log(correctAnswer);
     axios
-      .post("https://634c0ee3317dc96a30906a1a.mockapi.io//literation", {
-        title: title,
-        text: literation,
-        quiz: {
-          question: {
-            question1: quiz,
+      .post(
+        "https://back-end-production-a765.up.railway.app/Quiz/",
+        {
+          soal: {
             answer: choice,
-            answerCorrect: parseInt(correctAnswer),
+            question: quiz,
+            correctAnswer: parseInt(correctAnswer),
           },
+          nama: title,
+          bacaan: literation,
+          kelas: idClass.id,
         },
-      })
+        {
+          headers: header,
+        }
+      )
       .then(function (response) {
         console.log(response);
       })

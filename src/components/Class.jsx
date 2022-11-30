@@ -1,24 +1,24 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function Class() {
+function Class(props) {
   const navigate = useNavigate();
   const handleOpen = () => {
-    navigate("/literations");
+    navigate(`/literations/${props.idClass}`);
   };
   return (
     <div>
-      <div className="card" style={{ borderRadius: "20px" }}>
+      <div className="card" style={{ borderRadius: "20px", minHeight: "250px" }}>
         <div className="bg-primary mx-2 my-2" style={{ height: "100px", borderRadius: "20px", opacity: "0.5" }}></div>
         <div className="card-body">
           <h5 className="title" style={{ color: "#334" }}>
-            Ilmu Pengetahuan Alam
+            {props.className}
           </h5>
-          <p className="text" style={{ color: "#999" }}>
+          {/* <p className="text" style={{ color: "#999" }}>
             Literasi bacaan tentang Alam
-          </p>
+          </p> */}
           <div className="d-grid">
-            <button className="btn btn-outline-primary" onClick={handleOpen}>
+            <button className="btn btn-outline-primary mt-2" onClick={handleOpen}>
               Open
             </button>
           </div>
