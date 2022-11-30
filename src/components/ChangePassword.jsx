@@ -8,7 +8,7 @@ function ChangePassword() {
   const tokenUser = localStorage.getItem("token");
   const [password, setPassword] = useState("");
 
-  if (userId === null) {
+  if (tokenUser === null) {
     navigate("/");
   }
 
