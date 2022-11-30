@@ -30,11 +30,16 @@ function Account() {
   });
   if (localStorage.getItem("token") !== null) {
     useEffect(() => {
+<<<<<<< HEAD
       axios
         .get(
           `https://back-end-production-a765.up.railway.app/User/id/${idUser}`,
           { headers: header }
         )
+=======
+      authAxios
+        .get(`id/${idUser}`)
+>>>>>>> 14303456ca286495ab3edfc37fb48576c985f8f5
         .then((result) => {
           console.log(result.data.message);
           setIsLoading(false);
