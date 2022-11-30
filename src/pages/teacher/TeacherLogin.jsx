@@ -33,6 +33,8 @@ function TeacherLogin() {
           timer: 1000,
         }),
           localStorage.setItem("token", result.data.token);
+        localStorage.setItem("id", result.data.id);
+        localStorage.setItem("role", "teacher");
         console.log(result);
         navigate("/home");
       })
