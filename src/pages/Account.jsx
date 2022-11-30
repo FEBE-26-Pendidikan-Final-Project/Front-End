@@ -12,12 +12,16 @@ function Account() {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
-  const authAxios = axios.create({
-    baseURL: "https://back-end-production-a765.up.railway.app/User/",
-    headers: {
-      authuser: `${tokenUser}`,
-    },
-  });
+  // const authAxios = axios.create({
+  //   baseURL: "https://back-end-production-a765.up.railway.app/User/",
+  //   headers: {
+  //     authuser: `${tokenUser}`,
+  //   },
+  // });
+
+  const header = {
+    authuser: localStorage.getItem("token"),
+  };
 
   useEffect(() => {
     if (localStorage.getItem("token") === null) {
@@ -26,8 +30,10 @@ function Account() {
   });
   if (localStorage.getItem("token") !== null) {
     useEffect(() => {
-      authAxios
-        .get(`id/${idUser}`)
+      axios
+        .get(`https://back-end-production-a765.up.railway.app/User/${idUser}`, {
+          headers: header,
+        })
         .then((result) => {
           console.log(result.data.message);
           setIsLoading(false);
@@ -54,7 +60,9 @@ function Account() {
             <div className="col-md-4">
               <UserComponent username={data.nama} email={data.email} />
             </div>
-            <div className="col-md-8">{/* <ChangePassword /> */}</div>
+            <div className="col-md-8">
+              <ChangePassword />
+            </div>
           </div>
         </div>
       )}

@@ -1,3 +1,4 @@
+import "../css/changedata.css";
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -5,12 +6,19 @@ import swal from "sweetalert";
 
 function ChangePassword() {
   const navigate = useNavigate();
+  const idUser = localStorage.getItem("id");
   const tokenUser = localStorage.getItem("token");
-  const [password, setPassword] = useState("");
+  // const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
 
   if (tokenUser === null) {
     navigate("/");
   }
+
+  const header = {
+    authuser: localStorage.getItem("token"),
+  };
 
   const deleteAcc = () => {
     swal({
@@ -34,36 +42,53 @@ function ChangePassword() {
     });
   };
 
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
+  // const handlePassword = (e) => {
+  //   setPassword(e.target.value);
+  // };
+
+  const handleUsername = (e) => {
+    setUsername(e.target.value);
   };
 
-  const changePass = () => {
-    if (userId === null) {
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const changeData = () => {
+    if (tokenUser === null) {
       navigate("/");
-    } else if (password == "") {
-      swal("Error!", "password must be filled.", "warning", {
+    } else if (username == "" || email == "") {
+      swal("Error!", "username or email must be filled.", "warning", {
         timer: 4000,
       });
     } else {
       axios
         .put(
-          `https://back-end-production-a765.up.railway.app/User/register${tokenUser}`,
+          `https://back-end-production-a765.up.railway.app/User/${idUser}`,
           {
-            password: password,
+            nama: username,
+            email: email,
+          },
+          {
+            headers: header,
           }
         )
-        .then((result) => {
-          swal(
-            "Success!",
-            "password has been changed successfully.",
-            "success",
-            {
-              timer: 3000,
-            }
-          ),
-            navigate("/home");
-        }, setPassword(""))
+        .then(
+          (result) => {
+            console.log(result);
+            swal(
+              "Success!",
+              "password has been changed successfully.",
+              "success",
+              {
+                timer: 3000,
+              }
+            ),
+              navigate("/home");
+          },
+          setUsername(""),
+          setEmail("")
+        )
         .catch((error) => {
           console.log(error);
         });
@@ -77,20 +102,31 @@ function ChangePassword() {
         style={{ borderRadius: "20px", border: "0px", padding: "20px" }}
       >
         <div className="card-body">
-          <h5 className="">Change Password</h5>
-          <p className="">Change your password right here</p>
-          <div className="mb-3">
+          <h5 className="text-center">Change Account Data</h5>
+          <p className="text-change pt-3">change your username right here</p>
+          <div className="mb-3 col-md-6">
             <input
               type="password"
-              className="form-control"
+              className="form-control "
               id="exampleFormControlInput1"
               placeholder="Change Password"
-              value={password}
-              onChange={handlePassword}
+              value={username}
+              onChange={handleUsername}
+            />
+          </div>
+          <p className="text-change">change your email right here</p>
+          <div className="mb-3 col-md-6">
+            <input
+              type="password"
+              className="form-control "
+              id="exampleFormControlInput1"
+              placeholder="Change Password"
+              value={email}
+              onChange={handleEmail}
             />
           </div>
           <div className="d-grid">
-            <button className="btn btn-primary" onClick={changePass}>
+            <button className="btn btn-primary" onClick={changeData}>
               Save
             </button>
           </div>
