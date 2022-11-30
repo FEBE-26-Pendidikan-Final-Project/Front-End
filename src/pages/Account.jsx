@@ -30,16 +30,10 @@ function Account() {
   });
   if (localStorage.getItem("token") !== null) {
     useEffect(() => {
-<<<<<<< HEAD
       axios
-        .get(
-          `https://back-end-production-a765.up.railway.app/User/id/${idUser}`,
-          { headers: header }
-        )
-=======
-      authAxios
-        .get(`id/${idUser}`)
->>>>>>> 14303456ca286495ab3edfc37fb48576c985f8f5
+        .get(`https://back-end-production-a765.up.railway.app/User/${idUser}`, {
+          headers: header,
+        })
         .then((result) => {
           console.log(result.data.message);
           setIsLoading(false);
@@ -66,7 +60,9 @@ function Account() {
             <div className="col-md-4">
               <UserComponent username={data.nama} email={data.email} />
             </div>
-            <div className="col-md-8">{/* <ChangePassword /> */}</div>
+            <div className="col-md-8">
+              <ChangePassword />
+            </div>
           </div>
         </div>
       )}

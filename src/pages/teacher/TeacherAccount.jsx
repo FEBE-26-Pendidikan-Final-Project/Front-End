@@ -9,22 +9,36 @@ import TeacherComponent from "../../components/teacher/TeacherComponent";
 import TeacherChanges from "../../components/teacher/TeacherChanges";
 
 function TeacherAccount() {
-  const userId = localStorage.getItem("idUser");
+  const idAdmin = localStorage.getItem("id");
+  const tokenAdmin = localStorage.getItem("token");
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
-//   useEffect(() => {
-//     if (localStorage.getItem("idUser") === null) {
-//       navigate("/");
-//     }
-//   });
-  if (localStorage.getItem("idUser") !== null) {
+  const header = {
+    authuser: localStorage.getItem("token"),
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem("token") === null) {
+      navigate("/");
+    }
+  });
+  if (localStorage.getItem("token") !== null) {
     useEffect(() => {
-      axios.get(`https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users/${userId}`).then((res) => {
-        setData(res.data);
-        setIsLoading(false);
-      });
+      axios
+        .get(
+          `https://back-end-production-a765.up.railway.app/User/id/${idAdmin}`,
+          { headers: header }
+        )
+        .then((result) => {
+          console.log(result.data.message);
+          setIsLoading(false);
+          setData(result.data.message);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }, []);
   }
 
@@ -41,7 +55,7 @@ function TeacherAccount() {
         <div className="container my-2 mb-5">
           <div className="row justify-content-center">
             <div className="col-md-4">
-              <TeacherComponent/>
+              <TeacherComponent />
             </div>
             <div className="col-md-8">
               <TeacherChanges />

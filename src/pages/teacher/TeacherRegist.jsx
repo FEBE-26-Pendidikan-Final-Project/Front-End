@@ -8,7 +8,6 @@ import circleTeach2 from "../../assets/icon/circleteach2.svg";
 import imageRegister from "../../assets/img/registpict.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Alert } from "bootstrap";
 
 function TeacherRegist() {
   const navigate = useNavigate();

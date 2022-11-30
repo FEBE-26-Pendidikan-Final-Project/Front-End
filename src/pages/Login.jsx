@@ -37,6 +37,7 @@ function Login() {
         }),
           localStorage.setItem("token", result.data.token);
         localStorage.setItem("id", result.data.id);
+        localStorage.setItem("role", "user");
         console.log(result);
         setRedirect(true);
       })
