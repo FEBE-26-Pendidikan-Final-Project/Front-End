@@ -20,14 +20,6 @@ function QuizComponent() {
     });
   }, []);
 
-  console.log(data.doc);
-
-  useEffect(() => {
-    axios.get(`https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users/${userId}`).then((res) => {
-      setUsers(res.data);
-    });
-  }, []);
-
   const handleSubmit = () => {
     const correctAnswer = data.doc.soal.correctAnswer;
 
@@ -38,9 +30,28 @@ function QuizComponent() {
         }).then(function () {
           localStorage.setItem("score", 100);
           navigate(`/score`);
-          axios.put(`https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users/${userId}`, {
-            point: user.point + 100,
-          });
+
+          const header = {
+            authuser: localStorage.getItem("token"),
+          };
+          axios
+            .post(
+              `https://back-end-production-a765.up.railway.app/Nilai`,
+              {
+                skor: "100",
+                user: localStorage.getItem("id"),
+                quiz: id,
+              },
+              {
+                headers: header,
+              }
+            )
+            .then(function (response) {
+              console.log(response);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
         });
       } else {
         swal("Sorry", "your answer is incorrect!", "error", {

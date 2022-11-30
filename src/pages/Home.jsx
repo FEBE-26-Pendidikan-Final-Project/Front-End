@@ -5,8 +5,11 @@ import Menu from "../components/Menu";
 import { Link } from "react-router-dom";
 import JoinClass from "../components/JoinClass";
 import axios from "axios";
+import TeacherMenu from "../components/teacher/TeacherMenu";
+import TeacherModal from "../components/teacher/TeacherModal";
 
 function Home() {
+  const idUser = localStorage.getItem("id");
   const [data, setData] = useState([]);
   const [classTaken, setClassTaken] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -32,7 +35,7 @@ function Home() {
 
   useEffect(() => {
     axios
-      .get("https://back-end-production-a765.up.railway.app/kelastaken/user/6380a7f0a69b7c4ac8dc1877")
+      .get(`https://back-end-production-a765.up.railway.app/kelastaken/user/${idUser}`)
       .then(function (response) {
         setClassTaken(response.data.doc);
         setIsLoading(false);
@@ -42,6 +45,50 @@ function Home() {
       });
   }, []);
 
+  useEffect(() => {
+    axios
+      .get(`https://back-end-production-a765.up.railway.app/Kelas/Admin/${idUser}`)
+      .then(function (response) {
+        setData(response.data.doc);
+        setIsLoading(false);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+
+  if (localStorage.getItem("role") == "teacher") {
+    return (
+      <div>
+        <TeacherMenu />
+        <div className="container">
+          <div className="row justify-content-between my-2">
+            <div className="col-lg-3">
+              <form className="d-flex" role="search">
+                <input className="form-control" type="search" placeholder="Search" aria-label="Search" id="search" />
+                <button className="btn teach-search" type="submit" id="btn-search">
+                  <i className="bi bi-search"></i>
+                </button>
+              </form>
+            </div>
+            <div className="col-lg-2 my-2 d-grid">
+              <TeacherModal />
+            </div>
+          </div>
+        </div>
+        <div className="container mt-5">
+          <div className="row">
+            {data.map((item, index) => (
+              // console.log(item);
+              <div className="col-lg-3 mt-3" key={item._id}>
+                <Class className={item.nama} idClass={item._id} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <>
       <Menu />
