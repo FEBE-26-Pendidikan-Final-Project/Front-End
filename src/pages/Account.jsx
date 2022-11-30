@@ -12,12 +12,16 @@ function Account() {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
-  const authAxios = axios.create({
-    baseURL: "https://back-end-production-a765.up.railway.app/User/",
-    headers: {
-      authuser: `${tokenUser}`,
-    },
-  });
+  // const authAxios = axios.create({
+  //   baseURL: "https://back-end-production-a765.up.railway.app/User/",
+  //   headers: {
+  //     authuser: `${tokenUser}`,
+  //   },
+  // });
+
+  const header = {
+    authuser: localStorage.getItem("token"),
+  };
 
   useEffect(() => {
     if (localStorage.getItem("token") === null) {
@@ -26,9 +30,10 @@ function Account() {
   });
   if (localStorage.getItem("token") !== null) {
     useEffect(() => {
-      authAxios
+      axios
         .get(
-          `https://back-end-production-a765.up.railway.app/User/id/${idUser}`
+          `https://back-end-production-a765.up.railway.app/User/id/${idUser}`,
+          { headers: header }
         )
         .then((result) => {
           console.log(result.data.message);
