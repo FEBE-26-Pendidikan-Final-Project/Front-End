@@ -44,6 +44,16 @@ function TeacherQuizComponent() {
       )
       .then(function (response) {
         console.log(response);
+        setTitle("");
+        setLiteration("");
+        setQuiz("");
+        setCorrectAnswer();
+        setChoiceA("");
+        setChoiceB("");
+        setChoiceC("");
+        setChoiceD("");
+
+        navigate("/home");
       })
       .catch(function (error) {
         console.log(error);

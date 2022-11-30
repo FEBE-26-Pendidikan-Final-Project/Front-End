@@ -45,6 +45,18 @@ function Home() {
       });
   }, []);
 
+  useEffect(() => {
+    axios
+      .get(`https://back-end-production-a765.up.railway.app/Kelas/Admin/${idUser}`)
+      .then(function (response) {
+        setData(response.data.doc);
+        setIsLoading(false);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+
   if (localStorage.getItem("role") == "teacher") {
     return (
       <div>
@@ -66,9 +78,12 @@ function Home() {
         </div>
         <div className="container mt-5">
           <div className="row">
-            <div className="col-lg-3">
-              <Class />
-            </div>
+            {data.map((item, index) => (
+              // console.log(item);
+              <div className="col-lg-3 mt-3" key={item._id}>
+                <Class className={item.nama} idClass={item._id} />
+              </div>
+            ))}
           </div>
         </div>
       </div>

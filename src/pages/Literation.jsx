@@ -61,9 +61,15 @@ function Literation() {
             </button>
           </div>
           <div className="container-fluid py-3 px-3 shadow-sm" style={{ backgroundColor: "#fff", borderRadius: "20px" }}>
-            <div className="container bg-primary" style={{ opacity: "0.5", height: "100px", borderRadius: "20px" }}></div>
+            <div
+              className="container"
+              style={{ opacity: "0.5", height: "100px", borderRadius: "20px", backgroundColor: "#14c38e" }}
+            ></div>
             <div className="text-center h4 mt-4">{kelas.nama}</div>
-            <p className="text-center">Literasi bacaan tengtang alam</p>
+            <p className="text-center">{kelas.ket}</p>
+            <p className="text-center">
+              <b>{kelas._id}</b>
+            </p>
           </div>
           <div className="container mt-3" id="literation-list">
             {isLoading ? (
