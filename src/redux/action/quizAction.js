@@ -38,7 +38,6 @@ export function getQuizById(id) {
     dispatch(fetchStart());
     const result = await axios.get(`https://back-end-production-a765.up.railway.app/quiz/${id}`);
     dispatch(successGetQuizByID(result.data.doc));
-    console.log(result.data.doc);
   };
 }
 

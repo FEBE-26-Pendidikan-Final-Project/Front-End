@@ -8,9 +8,10 @@ import { Link, useNavigate } from "react-router-dom";
 function TeacherMenu() {
   const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.removeItem("id");
     localStorage.removeItem("token");
+    localStorage.removeItem("id");
     localStorage.removeItem("role");
+    localStorage.removeItem("score");
     navigate("/teachlogin");
   };
   return (
@@ -54,7 +55,7 @@ function TeacherMenu() {
         <div className="offcanvas-body">
           <ul className="list-group">
             <li className="list-group-item">
-              <Link to={"/teachhome"} className="nav-link">
+              <Link to={"/home"} className="nav-link">
                 <img src={home} alt="" className="mx-2" />
                 <span className="mx-3">Home Teacher</span>
               </Link>
