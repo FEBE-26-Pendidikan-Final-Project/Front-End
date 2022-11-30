@@ -5,9 +5,6 @@ import LiterationList from "../components/LiterationList";
 import Menu from "../components/Menu";
 import TeacherMenu from "../components/teacher/TeacherMenu";
 import "../css/text-quiz.css";
-
-localStorage.setItem("role", "user");
-
 function Literation() {
   const idClass = useParams();
 

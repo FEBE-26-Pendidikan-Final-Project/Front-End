@@ -15,8 +15,8 @@ function JoinClass() {
       .post(
         `https://back-end-production-a765.up.railway.app/kelasTaken/`,
         {
-          user: "6380a7f0a69b7c4ac8dc1877",
-          kelas: "638626f0f06bc8b5f935280e",
+          user: localStorage.getItem("id"),
+          kelas: "637f764b508a5d3fc0cf98ed",
         },
         {
           headers: header,
