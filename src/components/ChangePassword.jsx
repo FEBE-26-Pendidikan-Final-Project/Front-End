@@ -11,11 +11,21 @@ function ChangePassword() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [newpassword, setNewPassword] = useState("");
+  const [changePw, setChangePw] = useState(false);
+  const [changeUsername, setChangeUsername] = useState(false);
   // const [email, setEmail] = useState("");
 
   if (tokenUser === null) {
     navigate("/");
   }
+
+  const handleChangePw = () => {
+    setChangePw(true);
+  };
+
+  const handleChangeUsername = () => {
+    setChangePw(false);
+  };
 
   const header = {
     authuser: localStorage.getItem("token"),
@@ -38,17 +48,13 @@ function ChangePassword() {
             }
           )
           .then((res) => {
-            console.log(res);
-          })
-          .catch((err) => {
-            console.log(err);
+            swal("account deleted successfully.", {
+              icon: "success",
+            }),
+              localStorage.removeItem("id");
+            localStorage.removeItem("token");
+            navigate("/");
           });
-        swal("account deleted successfully.", {
-          icon: "success",
-        }),
-          localStorage.removeItem("id");
-        localStorage.removeItem("token");
-        navigate("/");
       }
     });
   };
@@ -65,10 +71,10 @@ function ChangePassword() {
     setNewPassword(e.target.value);
   };
 
-  const changeData = () => {
+  const changeDataUsername = () => {
     if (tokenUser === null) {
       navigate("/");
-    } else if (username == "" || password == "") {
+    } else if (username == "") {
       swal("Error!", "username or password must be filled.", "warning", {
         timer: 4000,
       });
@@ -78,8 +84,6 @@ function ChangePassword() {
           `https://back-end-production-a765.up.railway.app/user/${idUser}`,
           {
             nama: username,
-            password: password,
-            newPassword: newpassword,
           },
           {
             headers: header,
@@ -99,9 +103,43 @@ function ChangePassword() {
             setUsername(""),
             setPassword(""),
             setNewPassword("");
+        });
+    }
+  };
+
+  const changeDataPassword = () => {
+    if (tokenUser === null) {
+      navigate("/");
+    } else if (password == "") {
+      swal("Error!", "username or password must be filled.", "warning", {
+        timer: 4000,
+      });
+    } else {
+      axios
+        .put(
+          `https://back-end-production-a765.up.railway.app/user/${idUser}`,
+          {
+            password: password,
+            newPassword: newpassword,
+          },
+          {
+            headers: header,
+          }
+        )
+        .then((result) => {
+          swal(
+            "Success!",
+            "password has been changed successfully.",
+            "success",
+            {
+              timer: 3000,
+            }
+          ),
+            navigate("/home"),
+            setPassword(""),
+            setNewPassword("");
         })
         .catch((error) => {
-          console.log(error);
           if (
             error.response.data.message ==
             '"password" length must be at least 6 characters long'
@@ -157,61 +195,90 @@ function ChangePassword() {
       >
         <div className="card-body">
           <h5 className="text-center">Change Account Data</h5>
-          <p className="text-change pt-3">change your username right here</p>
-          <div className="mb-3 col-md-6">
-            <input
-              type="text"
-              className="form-control "
-              id="exampleFormControlInput1"
-              placeholder="Change Username"
-              value={username}
-              onChange={handleUsername}
-            />
-          </div>
-          <p className="text-change">old password</p>
-          <div className="mb-3 col-md-6">
-            <input
-              type="password"
-              className="form-control "
-              id="exampleFormControlInput1"
-              placeholder="Old Password"
-              value={password}
-              onChange={handlePassword}
-            />
-          </div>
-          <p className="text-change">new password</p>
-          <div className="mb-3 col-md-6">
-            <input
-              type="password"
-              className="form-control "
-              id="exampleFormControlInput1"
-              placeholder="New Password"
-              value={newpassword}
-              onChange={handleNewPassword}
-            />
-          </div>
-          {/* <p className="text-change">change your password right here</p>
-          <div className="mb-3 col-md-6">
-            <input
-              type="password"
-              className="form-control "
-              id="exampleFormControlInput1"
-              placeholder="Change Password"
-              value={password}
-              onChange={handlePassword}
-            />
-          </div> */}
+          {!changePw && (
+            <>
+              <p className="text-change pt-3">
+                change your username right here
+              </p>
+              <div className="mb-3 col-md-6">
+                <input
+                  type="text"
+                  className="form-control "
+                  id="exampleFormControlInput1"
+                  placeholder="Change Username"
+                  value={username}
+                  onChange={handleUsername}
+                />
+              </div>
+            </>
+          )}
+          {changePw && (
+            <>
+              <p className="text-change">old password</p>
+              <div className="mb-3 col-md-6">
+                <input
+                  type="password"
+                  className="form-control "
+                  id="exampleFormControlInput1"
+                  placeholder="Old Password"
+                  value={password}
+                  onChange={handlePassword}
+                />
+              </div>
+              <p className="text-change">new password</p>
+              <div className="mb-3 col-md-6">
+                <input
+                  type="password"
+                  className="form-control "
+                  id="exampleFormControlInput1"
+                  placeholder="New Password"
+                  value={newpassword}
+                  onChange={handleNewPassword}
+                />
+              </div>
+            </>
+          )}
+
           <div className="d-grid">
-            <button className="btn btn-primary" onClick={changeData}>
-              Save
-            </button>
+            {!changePw && (
+              <button className="btn btn-primary" onClick={changeDataUsername}>
+                Save Username
+              </button>
+            )}
+            {changePw && (
+              <button className="btn btn-primary" onClick={changeDataPassword}>
+                Save New Password
+              </button>
+            )}
           </div>
-          <button
-            className="btn btn-outline-danger d-flex ms-auto mt-3 "
-            onClick={deleteAcc}
-          >
-            Delete Account
-          </button>
+          <div className="d-flex">
+            <button
+              className="btn btn-outline-danger d-flex mt-3 me-3 ms-auto "
+              onClick={deleteAcc}
+            >
+              Delete Account
+            </button>
+            {!changePw && (
+              <>
+                <button
+                  className="btn btn-outline-success d-flex mt-3 "
+                  onClick={handleChangePw}
+                >
+                  Change Password
+                </button>
+              </>
+            )}
+            {changePw && (
+              <>
+                <button
+                  className="btn btn-outline-success d-flex mt-3 "
+                  onClick={handleChangeUsername}
+                >
+                  Back
+                </button>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>
