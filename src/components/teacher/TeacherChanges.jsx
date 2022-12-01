@@ -129,6 +129,18 @@ function TeacherChanges() {
             swal("Error!", "password is not allowed to be empty", "error", {
               timer: 3000,
             });
+          } else if (
+            error.response.data.message ==
+            '"newPassword" length must be at least 6 characters long'
+          ) {
+            swal(
+              "Error!",
+              "new password length must be at least 6 characters long",
+              "error",
+              {
+                timer: 3000,
+              }
+            );
           }
         });
     }

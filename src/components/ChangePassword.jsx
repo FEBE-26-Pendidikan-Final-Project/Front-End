@@ -61,10 +61,6 @@ function ChangePassword() {
     setUsername(e.target.value);
   };
 
-  // const handleEmail = (e) => {
-  //   setEmail(e.target.value);
-  // };
-
   const handleNewPassword = (e) => {
     setNewPassword(e.target.value);
   };
@@ -73,7 +69,7 @@ function ChangePassword() {
     if (tokenUser === null) {
       navigate("/");
     } else if (username == "" || password == "") {
-      swal("Error!", "username or email must be filled.", "warning", {
+      swal("Error!", "username or password must be filled.", "warning", {
         timer: 4000,
       });
     } else {
@@ -84,29 +80,26 @@ function ChangePassword() {
             nama: username,
             password: password,
             newPassword: newpassword,
-            // password: password,
           },
           {
             headers: header,
           }
         )
-        .then(
-          (result) => {
-            console.log(result);
-            swal(
-              "Success!",
-              "password has been changed successfully.",
-              "success",
-              {
-                timer: 3000,
-              }
-            ),
-              navigate("/home");
-          },
-          setUsername(""),
-          setPassword(""),
-          setNewPassword("")
-        )
+        .then((result) => {
+          console.log(result);
+          swal(
+            "Success!",
+            "password has been changed successfully.",
+            "success",
+            {
+              timer: 3000,
+            }
+          ),
+            navigate("/home"),
+            setUsername(""),
+            setPassword(""),
+            setNewPassword("");
+        })
         .catch((error) => {
           console.log(error);
           if (
@@ -132,6 +125,25 @@ function ChangePassword() {
             swal("Error!", "new password is not allowed to be empty", "error", {
               timer: 3000,
             });
+          } else if (
+            error.response.data.message ==
+            '"password" is not allowed to be empty'
+          ) {
+            swal("Error!", "password is not allowed to be empty", "error", {
+              timer: 3000,
+            });
+          } else if (
+            error.response.data.message ==
+            '"newPassword" length must be at least 6 characters long'
+          ) {
+            swal(
+              "Error!",
+              "new password length must be at least 6 characters long",
+              "error",
+              {
+                timer: 3000,
+              }
+            );
           }
         });
     }

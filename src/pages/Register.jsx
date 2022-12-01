@@ -17,7 +17,7 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const validasiAngka = /^[0-9]+$/;
+  const p = password;
   // const [point, setPoint] = useState("");
 
   const handleUsername = (e) => {
@@ -37,6 +37,14 @@ function Register() {
   };
 
   const clickRegist = (e) => {
+    // const notHuruf = () => {
+    //   if (p.search(/[a-z]/) < 0) {
+    //     return swal("Error!", "tidak boleh hanya angka", "error", {
+    //       timer: 3000,
+    //     });
+    //   }
+    // };
+    // notHuruf();
     const data = {
       nama: username,
       email: email,
