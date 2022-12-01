@@ -117,9 +117,8 @@ function Home() {
         ) : (
           <div className="row">
             {classTaken.map((item, index) => (
-              // console.log(item);
               <div className="col-lg-3 mt-3" key={item.kelas._id}>
-                <Class className={item.kelas.nama} idClass={item.kelas._id} />
+                <Class className={item.kelas.nama} idClass={item.kelas._id} idClassTaken={item._id} />
               </div>
             ))}
           </div>
