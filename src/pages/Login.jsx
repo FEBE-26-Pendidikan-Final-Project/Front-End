@@ -104,10 +104,7 @@ function Login() {
 
             <div className="card-title">Tingkatkan Literasi Mu</div>
             <div className="card-text position-absolute">
-              <p className="">
-                Dengan Membaca maka kita akan kita akan berkhayal tentang dunia
-                akhirat
-              </p>
+              <p className="">Dengan Membaca maka kita akan kita akan berkhayal tentang dunia akhirat</p>
             </div>
           </div>
           <div className="box-right">
@@ -151,12 +148,7 @@ function Login() {
               />
             </div>
             <div className="button-login">
-              <button
-                onClick={clickLogin}
-                type="button"
-                className="btn btn-primary p-0 btn-login"
-                id="login"
-              >
+              <button onClick={clickLogin} type="button" className="btn btn-primary p-0 btn-login" id="login">
                 Login
               </button>
             </div>

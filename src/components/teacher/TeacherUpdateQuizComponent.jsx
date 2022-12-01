@@ -1,8 +1,9 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-function TeacherQuizComponent() {
+function TeacherUpdateQuizComponent() {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
@@ -15,28 +16,40 @@ function TeacherQuizComponent() {
   const [choiceD, setChoiceD] = useState("");
   const [correctAnswer, setCorrectAnswer] = useState();
   const choice = [choiceA, choiceB, choiceC, choiceD];
+  const [isLoading, setIsLoading] = useState(true);
 
-  const idClass = useParams();
-  // console.log(idClass.id);
+  const [data, setData] = useState([]);
+
+  const idQuiz = useParams();
+
+  useEffect(() => {
+    axios
+      .get(`https://back-end-production-a765.up.railway.app/quiz/${idQuiz.id}`)
+      .then((res) => {
+        setData(res.data.doc);
+        setIsLoading(false);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
 
   const header = {
     authadmin: localStorage.getItem("token"),
   };
-
-  const handleSave = (e) => {
+  const handleUpdate = (e) => {
     e.preventDefault();
     axios
-      .post(
-        "https://back-end-production-a765.up.railway.app/Quiz/",
+      .put(
+        `https://back-end-production-a765.up.railway.app/Quiz/${idQuiz.id}`,
         {
-          soal: {
-            answer: choice,
-            question: quiz,
-            correctAnswer: parseInt(correctAnswer),
-          },
           nama: title,
           bacaan: literation,
-          kelas: idClass.id,
+          soal: {
+            question: quiz,
+            answer: choice,
+            correctAnswer: parseInt(correctAnswer),
+          },
         },
         {
           headers: header,
@@ -53,7 +66,7 @@ function TeacherQuizComponent() {
         setChoiceC("");
         setChoiceD("");
 
-        navigate(`/literations/${idClass.id}`);
+        navigate(`/home`);
       })
       .catch(function (error) {
         console.log(error);
@@ -63,9 +76,10 @@ function TeacherQuizComponent() {
     <div>
       <section className="quiz-section mx-2">
         <div className="container my-2">
-          <h3 className="text-center mb-4">Add Quiz</h3>
+          <h3 className="text-center mb-4">Update Quiz</h3>
+          <p className="text-center">({data.nama})</p>
           <hr />
-          <form onSubmit={handleSave}>
+          <form onSubmit={handleUpdate}>
             <div className="mb-3">
               <input
                 value={title}
@@ -171,7 +185,7 @@ function TeacherQuizComponent() {
               </div>
               <div className="d-grid">
                 <button className="btn" type="submit" id="btn-finish" style={{ backgroundColor: "#14c38e", color: "#fff" }}>
-                  Save
+                  Update
                 </button>
               </div>
             </div>
@@ -182,4 +196,4 @@ function TeacherQuizComponent() {
   );
 }
 
-export default TeacherQuizComponent;
+export default TeacherUpdateQuizComponent;
