@@ -27,8 +27,6 @@ function ChangePassword() {
     setChangePw(false);
   };
 
-  console.log(changePw);
-
   const header = {
     authuser: localStorage.getItem("token"),
   };
@@ -50,17 +48,13 @@ function ChangePassword() {
             }
           )
           .then((res) => {
-            console.log(res);
-          })
-          .catch((err) => {
-            console.log(err);
+            swal("account deleted successfully.", {
+              icon: "success",
+            }),
+              localStorage.removeItem("id");
+            localStorage.removeItem("token");
+            navigate("/");
           });
-        swal("account deleted successfully.", {
-          icon: "success",
-        }),
-          localStorage.removeItem("id");
-        localStorage.removeItem("token");
-        navigate("/");
       }
     });
   };
@@ -77,10 +71,10 @@ function ChangePassword() {
     setNewPassword(e.target.value);
   };
 
-  const changeData = () => {
+  const changeDataUsername = () => {
     if (tokenUser === null) {
       navigate("/");
-    } else if (username == "" || password == "") {
+    } else if (username == "") {
       swal("Error!", "username or password must be filled.", "warning", {
         timer: 4000,
       });
@@ -90,8 +84,6 @@ function ChangePassword() {
           `https://back-end-production-a765.up.railway.app/user/${idUser}`,
           {
             nama: username,
-            password: password,
-            newPassword: newpassword,
           },
           {
             headers: header,
@@ -111,9 +103,43 @@ function ChangePassword() {
             setUsername(""),
             setPassword(""),
             setNewPassword("");
+        });
+    }
+  };
+
+  const changeDataPassword = () => {
+    if (tokenUser === null) {
+      navigate("/");
+    } else if (password == "") {
+      swal("Error!", "username or password must be filled.", "warning", {
+        timer: 4000,
+      });
+    } else {
+      axios
+        .put(
+          `https://back-end-production-a765.up.railway.app/user/${idUser}`,
+          {
+            password: password,
+            newPassword: newpassword,
+          },
+          {
+            headers: header,
+          }
+        )
+        .then((result) => {
+          swal(
+            "Success!",
+            "password has been changed successfully.",
+            "success",
+            {
+              timer: 3000,
+            }
+          ),
+            navigate("/home"),
+            setPassword(""),
+            setNewPassword("");
         })
         .catch((error) => {
-          console.log(error);
           if (
             error.response.data.message ==
             '"password" length must be at least 6 characters long'
@@ -215,12 +241,12 @@ function ChangePassword() {
 
           <div className="d-grid">
             {!changePw && (
-              <button className="btn btn-primary" onClick={changeData}>
+              <button className="btn btn-primary" onClick={changeDataUsername}>
                 Save Username
               </button>
             )}
             {changePw && (
-              <button className="btn btn-primary" onClick={changeData}>
+              <button className="btn btn-primary" onClick={changeDataPassword}>
                 Save New Password
               </button>
             )}

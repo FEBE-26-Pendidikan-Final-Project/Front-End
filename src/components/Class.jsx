@@ -7,7 +7,7 @@ function Class(props) {
     navigate(`/literations/${props.idClass}`);
   };
 
-  if (localStorage.getItem("role" === "teacher")) {
+  if (localStorage.getItem("role") === "teacher") {
     return (
       <div>
         <div
@@ -62,6 +62,10 @@ function Class(props) {
             <div className="d-grid">
               <button
                 className="btn btn-outline-primary mt-2"
+                onClick={handleOpen}
+              ></button>
+              <button
+                className="btn btn-outline-success mt-2"
                 onClick={handleOpen}
               >
                 Open

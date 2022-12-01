@@ -42,6 +42,7 @@ function Login() {
         setRedirect(true);
       })
       .catch((err) => {
+        console.log(err);
         if (!email) {
           swal("Error!", "email is incorrect.", "error", {
             timer: 1000,
