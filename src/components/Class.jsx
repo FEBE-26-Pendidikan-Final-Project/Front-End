@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 function Class(props) {
   const navigate = useNavigate();
   const handleOpen = () => {
-    navigate(`/literations/${props.idClass}`);
+    navigate(`/literations/${props.idClass}/${props.idClassTaken}`);
   };
 
   if (localStorage.getItem("role") === "teacher") {
