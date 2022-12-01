@@ -20,8 +20,9 @@
 .input-code {
     border-radius: 8px;
     border: none;
+    font-size: 12px;
     max-width: 20rem;
-    letter-spacing: 8px;
+    letter-spacing: 2px;
     font-weight: 500;
     height: 2rem;
 }

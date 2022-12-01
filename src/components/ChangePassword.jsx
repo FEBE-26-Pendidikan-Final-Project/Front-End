@@ -8,9 +8,10 @@ function ChangePassword() {
   const navigate = useNavigate();
   const idUser = localStorage.getItem("id");
   const tokenUser = localStorage.getItem("token");
-  // const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [newpassword, setNewPassword] = useState("");
+  // const [email, setEmail] = useState("");
 
   if (tokenUser === null) {
     navigate("/");
@@ -30,67 +31,120 @@ function ChangePassword() {
     }).then((willDelete) => {
       if (willDelete) {
         axios
-          .delete(`https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users/${userId}`)
-          .then((res) => {})
-          .catch((err) => console.log("error"));
+          .delete(
+            `https://back-end-production-a765.up.railway.app/User/${idUser}`,
+            {
+              headers: header,
+            }
+          )
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
         swal("account deleted successfully.", {
           icon: "success",
         }),
-          localStorage.removeItem("idUser");
+          localStorage.removeItem("id");
+        localStorage.removeItem("token");
         navigate("/");
       }
     });
   };
 
-  // const handlePassword = (e) => {
-  //   setPassword(e.target.value);
-  // };
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
 
   const handleUsername = (e) => {
     setUsername(e.target.value);
   };
 
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
+  const handleNewPassword = (e) => {
+    setNewPassword(e.target.value);
   };
 
   const changeData = () => {
     if (tokenUser === null) {
       navigate("/");
-    } else if (username == "" || email == "") {
-      swal("Error!", "username or email must be filled.", "warning", {
+    } else if (username == "" || password == "") {
+      swal("Error!", "username or password must be filled.", "warning", {
         timer: 4000,
       });
     } else {
       axios
         .put(
-          `https://back-end-production-a765.up.railway.app/User/${idUser}`,
+          `https://back-end-production-a765.up.railway.app/user/${idUser}`,
           {
             nama: username,
-            email: email,
+            password: password,
+            newPassword: newpassword,
           },
           {
             headers: header,
           }
         )
-        .then(
-          (result) => {
-            console.log(result);
+        .then((result) => {
+          console.log(result);
+          swal(
+            "Success!",
+            "password has been changed successfully.",
+            "success",
+            {
+              timer: 3000,
+            }
+          ),
+            navigate("/home"),
+            setUsername(""),
+            setPassword(""),
+            setNewPassword("");
+        })
+        .catch((error) => {
+          console.log(error);
+          if (
+            error.response.data.message ==
+            '"password" length must be at least 6 characters long'
+          ) {
             swal(
-              "Success!",
-              "password has been changed successfully.",
-              "success",
+              "Error!",
+              "password length must be at least 6 characters long",
+              "error",
               {
                 timer: 3000,
               }
-            ),
-              navigate("/home");
-          },
-          setUsername(""),
-          setEmail("")
-        )
-        .catch((error) => {
-          console.log(error);
+            );
+          } else if (error.response.data.message == "Password tidak sesuai!") {
+            swal("Error!", "your old password wrong!", "error", {
+              timer: 3000,
+            });
+          } else if (
+            error.response.data.message ==
+            '"newPassword" is not allowed to be empty'
+          ) {
+            swal("Error!", "new password is not allowed to be empty", "error", {
+              timer: 3000,
+            });
+          } else if (
+            error.response.data.message ==
+            '"password" is not allowed to be empty'
+          ) {
+            swal("Error!", "password is not allowed to be empty", "error", {
+              timer: 3000,
+            });
+          } else if (
+            error.response.data.message ==
+            '"newPassword" length must be at least 6 characters long'
+          ) {
+            swal(
+              "Error!",
+              "new password length must be at least 6 characters long",
+              "error",
+              {
+                timer: 3000,
+              }
+            );
+          }
         });
     }
   };
@@ -106,25 +160,47 @@ function ChangePassword() {
           <p className="text-change pt-3">change your username right here</p>
           <div className="mb-3 col-md-6">
             <input
-              type="password"
+              type="text"
               className="form-control "
               id="exampleFormControlInput1"
-              placeholder="Change Password"
+              placeholder="Change Username"
               value={username}
               onChange={handleUsername}
             />
           </div>
-          <p className="text-change">change your email right here</p>
+          <p className="text-change">old password</p>
+          <div className="mb-3 col-md-6">
+            <input
+              type="password"
+              className="form-control "
+              id="exampleFormControlInput1"
+              placeholder="Old Password"
+              value={password}
+              onChange={handlePassword}
+            />
+          </div>
+          <p className="text-change">new password</p>
+          <div className="mb-3 col-md-6">
+            <input
+              type="password"
+              className="form-control "
+              id="exampleFormControlInput1"
+              placeholder="New Password"
+              value={newpassword}
+              onChange={handleNewPassword}
+            />
+          </div>
+          {/* <p className="text-change">change your password right here</p>
           <div className="mb-3 col-md-6">
             <input
               type="password"
               className="form-control "
               id="exampleFormControlInput1"
               placeholder="Change Password"
-              value={email}
-              onChange={handleEmail}
+              value={password}
+              onChange={handlePassword}
             />
-          </div>
+          </div> */}
           <div className="d-grid">
             <button className="btn btn-primary" onClick={changeData}>
               Save

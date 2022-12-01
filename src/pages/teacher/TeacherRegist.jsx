@@ -16,6 +16,7 @@ function TeacherRegist() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [point, setPoint] = useState("");
+  const p = password;
 
   const handleUsername = (e) => {
     setUsername(e.target.value);
@@ -34,6 +35,14 @@ function TeacherRegist() {
   };
 
   const clickRegist = (e) => {
+    // const notHuruf = () => {
+    //   if (p.search(/[a-z]/) < 0) {
+    //     return swal("Error!", "tidak boleh hanya angka", "error", {
+    //       timer: 3000,
+    //     });
+    //   }
+    // };
+    // notHuruf();
     const data = {
       nama: username,
       email: email,
