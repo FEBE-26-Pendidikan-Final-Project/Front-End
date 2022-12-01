@@ -7,7 +7,7 @@ function Class(props) {
     navigate(`/literations/${props.idClass}`);
   };
 
-  if (localStorage.getItem("role" === "teacher")) {
+  if (localStorage.getItem("role") === "teacher") {
     return (
       <div>
         <div className="card" style={{ borderRadius: "20px", minHeight: "250px" }}>
@@ -23,7 +23,7 @@ function Class(props) {
               Literasi bacaan tentang Alam
             </p> */}
             <div className="d-grid">
-              <button className="btn btn-outline-primary mt-2" onClick={handleOpen}>
+              <button className="btn btn-outline-success mt-2" onClick={handleOpen}>
                 Open
               </button>
             </div>
