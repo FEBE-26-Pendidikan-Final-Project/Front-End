@@ -5,7 +5,7 @@ import LiterationList from "../components/LiterationList";
 import Menu from "../components/Menu";
 import TeacherMenu from "../components/teacher/TeacherMenu";
 import "../css/text-quiz.css";
-function Literation() {
+function Literation(props) {
   const idClass = useParams();
 
   const navigate = useNavigate();
@@ -84,6 +84,23 @@ function Literation() {
         location.reload();
       })
       .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const leaveClass = (id) => {
+    const header = {
+      authUser: localStorage.getItem("token"),
+    };
+    axios
+      .delete(`https://back-end-production-a765.up.railway.app/kelasTaken/${id}`, {
+        headers: header,
+      })
+      .then(function (response) {
+        // console.log(response);
+        navigate("/home");
+      })
+      .then(function (error) {
         console.log(error);
       });
   };
@@ -198,6 +215,11 @@ function Literation() {
     <div>
       <Menu />
       <div className="container mt-5">
+        <div className="d-grid">
+          <button className="bg-danger btn mb-3" style={{ color: "#fff" }} onClick={() => leaveClass(idClass.classTaken)}>
+            <i className="bi bi-box-arrow-in-down-left"></i> Leave Class
+          </button>
+        </div>
         <div className="container-fluid py-3 px-3 shadow-sm" style={{ backgroundColor: "#fff", borderRadius: "20px" }}>
           <div className="container bg-primary" style={{ opacity: "0.5", height: "100px", borderRadius: "20px" }}></div>
           <div className="text-center h4 mt-4">{kelas.nama}</div>

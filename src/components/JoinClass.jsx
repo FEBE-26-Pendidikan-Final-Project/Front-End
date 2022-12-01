@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../css/modal.css";
 import buletan1 from "../assets/img/buletan1.png";
 import axios from "axios";
+import swal from "sweetalert";
 
 function JoinClass() {
   const [joinClass, setJoinClass] = useState("");
@@ -23,11 +24,15 @@ function JoinClass() {
         }
       )
       .then(function (response) {
-        console.log(response);
+        // console.log(response);
         location.reload();
       })
       .catch(function (error) {
-        console.log(error);
+        // console.log(error);
+        swal("Not Found", "Class not found", "error", {
+          timer: 1000,
+        });
+        setJoinClass("");
       });
   };
   return (
