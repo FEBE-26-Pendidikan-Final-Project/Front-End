@@ -45,13 +45,13 @@ function TeacherMenu() {
         <div className="offcanvas-body">
           <ul className="list-group">
             <li className="list-group-item">
-              <Link to={"/teachhome"} className="nav-link">
+              <Link to={"/home"} className="nav-link">
                 <img src={home} alt="" className="mx-2" />
                 <span className="mx-3">Home Teacher</span>
               </Link>
             </li>
             <li className="list-group-item">
-              <Link to={"/teachaccount"} className="nav-link">
+              <Link to={"/account"} className="nav-link">
                 <img src={account} alt="" className="mx-2" />
                 <span className="mx-3">Account</span>
               </Link>

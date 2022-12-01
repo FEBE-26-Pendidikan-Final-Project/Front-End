@@ -82,7 +82,14 @@ function Literation() {
               data.map((item, index) => {
                 return (
                   <div key={index}>
-                    <LiterationList id={item.id} title={item.nama} />
+                    <LiterationList
+                      id={item._id}
+                      title={item.nama}
+                      kelas={item.kelas}
+                      bacaan={item.bacaan}
+                      question={item.soal.question}
+                      answer={item.soal.answer}
+                    />
                   </div>
                 );
               })

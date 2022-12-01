@@ -53,7 +53,7 @@ function TeacherQuizComponent() {
         setChoiceC("");
         setChoiceD("");
 
-        navigate("/home");
+        navigate(`/literations/${idClass.id}`);
       })
       .catch(function (error) {
         console.log(error);
