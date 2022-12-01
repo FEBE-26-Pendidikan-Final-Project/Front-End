@@ -11,11 +11,23 @@ function ChangePassword() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [newpassword, setNewPassword] = useState("");
+  const [changePw, setChangePw] = useState(false);
+  const [changeUsername, setChangeUsername] = useState(false);
   // const [email, setEmail] = useState("");
 
   if (tokenUser === null) {
     navigate("/");
   }
+
+  const handleChangePw = () => {
+    setChangePw(true);
+  };
+
+  const handleChangeUsername = () => {
+    setChangePw(false);
+  };
+
+  console.log(changePw);
 
   const header = {
     authuser: localStorage.getItem("token"),
@@ -157,61 +169,90 @@ function ChangePassword() {
       >
         <div className="card-body">
           <h5 className="text-center">Change Account Data</h5>
-          <p className="text-change pt-3">change your username right here</p>
-          <div className="mb-3 col-md-6">
-            <input
-              type="text"
-              className="form-control "
-              id="exampleFormControlInput1"
-              placeholder="Change Username"
-              value={username}
-              onChange={handleUsername}
-            />
-          </div>
-          <p className="text-change">old password</p>
-          <div className="mb-3 col-md-6">
-            <input
-              type="password"
-              className="form-control "
-              id="exampleFormControlInput1"
-              placeholder="Old Password"
-              value={password}
-              onChange={handlePassword}
-            />
-          </div>
-          <p className="text-change">new password</p>
-          <div className="mb-3 col-md-6">
-            <input
-              type="password"
-              className="form-control "
-              id="exampleFormControlInput1"
-              placeholder="New Password"
-              value={newpassword}
-              onChange={handleNewPassword}
-            />
-          </div>
-          {/* <p className="text-change">change your password right here</p>
-          <div className="mb-3 col-md-6">
-            <input
-              type="password"
-              className="form-control "
-              id="exampleFormControlInput1"
-              placeholder="Change Password"
-              value={password}
-              onChange={handlePassword}
-            />
-          </div> */}
+          {!changePw && (
+            <>
+              <p className="text-change pt-3">
+                change your username right here
+              </p>
+              <div className="mb-3 col-md-6">
+                <input
+                  type="text"
+                  className="form-control "
+                  id="exampleFormControlInput1"
+                  placeholder="Change Username"
+                  value={username}
+                  onChange={handleUsername}
+                />
+              </div>
+            </>
+          )}
+          {changePw && (
+            <>
+              <p className="text-change">old password</p>
+              <div className="mb-3 col-md-6">
+                <input
+                  type="password"
+                  className="form-control "
+                  id="exampleFormControlInput1"
+                  placeholder="Old Password"
+                  value={password}
+                  onChange={handlePassword}
+                />
+              </div>
+              <p className="text-change">new password</p>
+              <div className="mb-3 col-md-6">
+                <input
+                  type="password"
+                  className="form-control "
+                  id="exampleFormControlInput1"
+                  placeholder="New Password"
+                  value={newpassword}
+                  onChange={handleNewPassword}
+                />
+              </div>
+            </>
+          )}
+
           <div className="d-grid">
-            <button className="btn btn-primary" onClick={changeData}>
-              Save
-            </button>
+            {!changePw && (
+              <button className="btn btn-primary" onClick={changeData}>
+                Save Username
+              </button>
+            )}
+            {changePw && (
+              <button className="btn btn-primary" onClick={changeData}>
+                Save New Password
+              </button>
+            )}
           </div>
-          <button
-            className="btn btn-outline-danger d-flex ms-auto mt-3 "
-            onClick={deleteAcc}
-          >
-            Delete Account
-          </button>
+          <div className="d-flex">
+            <button
+              className="btn btn-outline-danger d-flex mt-3 me-3 ms-auto "
+              onClick={deleteAcc}
+            >
+              Delete Account
+            </button>
+            {!changePw && (
+              <>
+                <button
+                  className="btn btn-outline-success d-flex mt-3 "
+                  onClick={handleChangePw}
+                >
+                  Change Password
+                </button>
+              </>
+            )}
+            {changePw && (
+              <>
+                <button
+                  className="btn btn-outline-success d-flex mt-3 "
+                  onClick={handleChangeUsername}
+                >
+                  Back
+                </button>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>

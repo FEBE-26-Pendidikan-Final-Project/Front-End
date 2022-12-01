@@ -4,6 +4,7 @@ import Menu from "../components/Menu";
 import UserComponent from "../components/UserComponent";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import ChangeUsername from "../components/ChangeUsername";
 
 function Account() {
   const idUser = localStorage.getItem("id");

@@ -1,6 +1,22 @@
-import React from "react";
+import axios, { Axios } from "axios";
+import React, { useEffect, useState } from "react";
 
 function UserComponent({ username, email }) {
+  const idUser = localStorage.getItem("id");
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://back-end-production-a765.up.railway.app/Nilai/6381bc39818db043ac587a83`
+      )
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <div>
       <div
