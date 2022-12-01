@@ -53,9 +53,7 @@ function TeacherChanges() {
             localStorage.removeItem("token");
             navigate("/teachlogin");
           })
-          .catch((err) => {
-            console.log(err);
-          });
+          .catch((err) => {});
       }
     });
   };
@@ -106,7 +104,6 @@ function TeacherChanges() {
             setNewPassword("");
         })
         .catch((error) => {
-          console.log(error);
           if (
             error.response.data.message ==
             '"password" length must be at least 6 characters long'
@@ -173,7 +170,6 @@ function TeacherChanges() {
           }
         )
         .then((result) => {
-          console.log(result);
           swal(
             "Success!",
             "password has been changed successfully.",
@@ -231,7 +227,7 @@ function TeacherChanges() {
                 <input
                   type="password"
                   className="form-control "
-                  id="exampleFormControlInput1"
+                  id="exampleFormControlInput2"
                   placeholder="New Password"
                   value={newpassword}
                   onChange={handleNewPassword}

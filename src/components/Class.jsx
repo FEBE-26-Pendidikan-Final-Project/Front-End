@@ -31,7 +31,7 @@ function Class(props) {
             </p> */}
             <div className="d-grid">
               <button
-                className="btn btn-outline-primary mt-2"
+                className="btn btn-outline-success mt-2"
                 onClick={handleOpen}
               >
                 Open
@@ -49,7 +49,7 @@ function Class(props) {
           style={{ borderRadius: "20px", minHeight: "250px" }}
         >
           <div
-            className=" mx-2 my-2"
+            className="bg-primary mx-2 my-2"
             style={{ height: "100px", borderRadius: "20px", opacity: "0.5" }}
           ></div>
           <div className="card-body">
@@ -62,10 +62,6 @@ function Class(props) {
             <div className="d-grid">
               <button
                 className="btn btn-outline-primary mt-2"
-                onClick={handleOpen}
-              ></button>
-              <button
-                className="btn btn-outline-success mt-2"
                 onClick={handleOpen}
               >
                 Open
