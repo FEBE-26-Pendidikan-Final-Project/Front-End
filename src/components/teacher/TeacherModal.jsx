@@ -32,22 +32,38 @@ function TeacherModal() {
   };
   return (
     <>
-      <button type="button" class="btn btn-primary btn-create-class" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <button
+        type="button"
+        className="btn btn-primary btn-create-class"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
         Create Class
       </button>
 
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content modal-content-teacher">
-            <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div
+        className="modal fade"
+        id="exampleModal"
+        tabIndex={-1}
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content modal-content-teacher">
+            <div className="modal-header">
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
-            <div class="modal-body text-center mt-3 position-relative">
+            <div className="modal-body text-center mt-3 position-relative">
               <p className="text-light text-name mt-3">Class Name</p>
               <div className="group-input">
                 <input
                   type="text"
-                  class="text-center col-md-8 input-code input-name"
+                  className="text-center col-md-8 input-code input-name"
                   required
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
@@ -66,11 +82,11 @@ function TeacherModal() {
                 ></textarea>
               </div>
             </div>
-            <div class="footer mx-auto">
+            <div className="footer mx-auto">
               <button
                 data-bs-dismiss="modal"
                 type="button"
-                class="btn btn-primary btn-join-modal p-0"
+                className="btn btn-primary btn-join-modal p-0"
                 onClick={() => createClass()}
               >
                 Create
