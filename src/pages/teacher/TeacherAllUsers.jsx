@@ -6,10 +6,11 @@ import DataUsers from "../../components/teacher/DataUsers";
 import TeacherMenu from "../../components/teacher/TeacherMenu";
 
 function TeacherAllUsers() {
-  const idUser = localStorage.getItem("id");
-  const tokenUser = localStorage.getItem("token");
+  const idAdmin = localStorage.getItem("id");
+  const tokenAdmin = localStorage.getItem("token");
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
 
   // const authAxios = axios.create({
@@ -19,18 +20,17 @@ function TeacherAllUsers() {
   //   },
   // });
 
-  const authadmin =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzdlMWNhNzZiZDFmZjA4MjhlZmQxMzciLCJpYXQiOjE2Njk4MjYwNzZ9.Sv2nO1KMR3U5laG2uVJSOUxa148YQK4Lv22ois9AYQM";
+  const authadmin = localStorage.getItem("token");
 
   const header = {
     authadmin: authadmin,
   };
 
-  //   useEffect(() => {
-  //     if (localStorage.getItem("token") === null) {
-  //       navigate("/");
-  //     }
-  //   });
+  useEffect(() => {
+    if (localStorage.getItem("token") === null) {
+      navigate("/teachlogin");
+    }
+  });
 
   useEffect(() => {
     axios
@@ -62,7 +62,10 @@ function TeacherAllUsers() {
       ) : (
         <div
           className="container my-2 d-flex ms-5"
-          style={{ width: "100vw", boxSizing: "border-box" }}
+          style={{
+            width: "100vw",
+            boxSizing: "border-box",
+          }}
         >
           <div className="row mx-0 d-flex">
             <div className="col-md-12 col-sm-12 d-flex flex-wrap">

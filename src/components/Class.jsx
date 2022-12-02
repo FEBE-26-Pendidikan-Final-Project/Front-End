@@ -4,7 +4,11 @@ import { useNavigate } from "react-router-dom";
 function Class(props) {
   const navigate = useNavigate();
   const handleOpen = () => {
-    navigate(`/literations/${props.idClass}/${props.idClassTaken}`);
+    navigate(`/literations/${props.idClass}`);
+  };
+  const handleOpenUser = () => {
+    navigate(`/literations/${props.idClass}`);
+    localStorage.setItem("idClassTaken", props.idClassTaken);
   };
 
   if (localStorage.getItem("role") === "teacher") {
@@ -56,13 +60,10 @@ function Class(props) {
             <h5 className="title" style={{ color: "#334" }}>
               {props.className}
             </h5>
-            {/* <p className="text" style={{ color: "#999" }}>
-            Literasi bacaan tentang Alam
-          </p> */}
             <div className="d-grid">
               <button
                 className="btn btn-outline-primary mt-2"
-                onClick={handleOpen}
+                onClick={handleOpenUser}
               >
                 Open
               </button>

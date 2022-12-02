@@ -2,6 +2,7 @@ import React from "react";
 import "../../css/teacherhome.css";
 import home from "../../assets/icon/teacherhome.png";
 import account from "../../assets/icon/teacheraccount.png";
+import updateuser from "../../assets/icon/updateuser.svg";
 import logout from "../../assets/icon/logout.svg";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -68,7 +69,7 @@ function TeacherMenu() {
             </li>
             <li className="list-group-item">
               <Link to={"/teachusers"} className="nav-link">
-                <img src={account} alt="" className="mx-2" />
+                <img src={updateuser} alt="" className="mx-2" />
                 <span className="mx-3">All Users</span>
               </Link>
             </li>
