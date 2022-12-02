@@ -20,7 +20,7 @@ function Class(props) {
         >
           <div
             className="bg-success mx-2 my-2"
-            style={{https://github.com/FEBE-26-Pendidikan-Final-Project/Front-End/pull/17/conflict?name=src%252Fcomponents%252FClass.jsx&ancestor_oid=d4b8643440e6cbf4e7b16aafa9e1186e4831c635&base_oid=edebd17836a7a42793cc1dfa1c29b7aef4f9746a&head_oid=ff31ae63ccee5d7459c161d8528aaf2a1657897b
+            style={{
               height: "100px",
               borderRadius: "20px",
               opacity: "0.5",
@@ -35,7 +35,7 @@ function Class(props) {
             </p> */}
             <div className="d-grid">
               <button
-                className="btn btn-outline-primary mt-2"
+                className="btn btn-outline-success mt-2"
                 onClick={handleOpen}
               >
                 Open
@@ -53,20 +53,21 @@ function Class(props) {
           style={{ borderRadius: "20px", minHeight: "250px" }}
         >
           <div
-            className=" mx-2 my-2"
+            className="bg-primary mx-2 my-2"
             style={{ height: "100px", borderRadius: "20px", opacity: "0.5" }}
           ></div>
           <div className="card-body">
             <h5 className="title" style={{ color: "#334" }}>
               {props.className}
             </h5>
-            {/* <p className="text" style={{ color: "#999" }}>
-            Literasi bacaan tentang Alam
-          </p> */}
-          <div className="d-grid">
-            <button className="btn btn-outline-primary mt-2" onClick={handleOpenUser}>
-              Open
-            </button>
+            <div className="d-grid">
+              <button
+                className="btn btn-outline-primary mt-2"
+                onClick={handleOpenUser}
+              >
+                Open
+              </button>
+            </div>
           </div>
         </div>
       </div>

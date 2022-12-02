@@ -14,6 +14,8 @@ import TeacherAccount from "./pages/teacher/TeacherAccount";
 import TeacherQuiz from "./pages/teacher/TeacherQuiz";
 import QuizList from "./pages/teacher/QuizList";
 import TeacherQuizUpdate from "./pages/teacher/TeacherQuizUpdate";
+import DataUsers from "./components/teacher/DataUsers";
+import TeacherAllUsers from "./pages/teacher/TeacherAllUsers";
 
 function App() {
   return (
@@ -32,6 +34,7 @@ function App() {
       <Route path="/teacher/quizlist" element={<QuizList />} />
       <Route path="/teacher/quiz/:id" element={<TeacherQuiz />} />
       <Route path="/teacher/quizUpdate/:id" element={<TeacherQuizUpdate />} />
+      <Route path="/teachusers" element={<TeacherAllUsers />} />
       <Route path="*" element={<Login />} />
     </Routes>
   );

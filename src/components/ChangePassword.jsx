@@ -12,7 +12,6 @@ function ChangePassword() {
   const [password, setPassword] = useState("");
   const [newpassword, setNewPassword] = useState("");
   const [changePw, setChangePw] = useState(false);
-  const [changeUsername, setChangeUsername] = useState(false);
   // const [email, setEmail] = useState("");
 
   if (tokenUser === null) {
@@ -230,7 +229,7 @@ function ChangePassword() {
                 <input
                   type="password"
                   className="form-control "
-                  id="exampleFormControlInput1"
+                  id="exampleFormControlInput2"
                   placeholder="New Password"
                   value={newpassword}
                   onChange={handleNewPassword}
