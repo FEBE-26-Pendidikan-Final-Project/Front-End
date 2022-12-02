@@ -35,7 +35,9 @@ function Home() {
 
   useEffect(() => {
     axios
-      .get(`https://back-end-production-a765.up.railway.app/kelastaken/user/${idUser}`)
+      .get(
+        `https://back-end-production-a765.up.railway.app/kelastaken/user/${idUser}`
+      )
       .then(function (response) {
         setClassTaken(response.data.doc);
         setIsLoading(false);
@@ -47,7 +49,9 @@ function Home() {
 
   useEffect(() => {
     axios
-      .get(`https://back-end-production-a765.up.railway.app/Kelas/Admin/${idUser}`)
+      .get(
+        `https://back-end-production-a765.up.railway.app/Kelas/Admin/${idUser}`
+      )
       .then(function (response) {
         setData(response.data.doc);
         setIsLoading(false);
@@ -65,8 +69,18 @@ function Home() {
           <div className="row justify-content-between my-2">
             <div className="col-lg-3">
               <form className="d-flex" role="search">
-                <input className="form-control" type="search" placeholder="Search" aria-label="Search" id="search" />
-                <button className="btn teach-search" type="submit" id="btn-search">
+                <input
+                  className="form-control"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                  id="search"
+                />
+                <button
+                  className="btn teach-search"
+                  type="submit"
+                  id="btn-search"
+                >
                   <i className="bi bi-search"></i>
                 </button>
               </form>
@@ -96,7 +110,13 @@ function Home() {
         <div className="row justify-content-between my-2">
           <div className="col-lg-3">
             <form className="d-flex" role="search">
-              <input className="form-control" type="search" placeholder="Search" aria-label="Search" id="search" />
+              <input
+                className="form-control"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+                id="search"
+              />
               <button className="btn" type="submit" id="btn-search">
                 <i className="bi bi-search"></i>
               </button>
@@ -118,7 +138,11 @@ function Home() {
           <div className="row">
             {classTaken.map((item, index) => (
               <div className="col-lg-3 mt-3" key={item.kelas._id}>
-                <Class className={item.kelas.nama} idClass={item.kelas._id} idClassTaken={item._id} />
+                <Class
+                  className={item.kelas.nama}
+                  idClass={item.kelas._id}
+                  idClassTaken={item._id}
+                />
               </div>
             ))}
           </div>
