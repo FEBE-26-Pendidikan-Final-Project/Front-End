@@ -22,18 +22,6 @@ function Home() {
     }
   });
 
-  // useEffect(() => {
-  //   axios
-  //     .get("https://back-end-production-a765.up.railway.app/kelas")
-  //     .then(function (response) {
-  //       setData(response.data);
-  //       setIsLoading(false);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }, []);
-
   useEffect(() => {
     axios
       .get(
@@ -43,9 +31,7 @@ function Home() {
         setClassTaken(response.data.doc);
         setIsLoading(false);
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch(function (error) {});
   }, []);
 
   useEffect(() => {
@@ -57,9 +43,7 @@ function Home() {
         setData(response.data.doc);
         setIsLoading(false);
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch(function (error) {});
   }, []);
 
   if (localStorage.getItem("role") == "teacher") {
@@ -94,7 +78,6 @@ function Home() {
         <div className="container mt-5">
           <div className="row">
             {data.map((item, index) => (
-              // console.log(item);
               <div className="col-lg-3 mt-3" key={item._id}>
                 <Class className={item.nama} idClass={item._id} />
               </div>

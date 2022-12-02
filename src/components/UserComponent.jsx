@@ -6,7 +6,6 @@ function UserComponent({ username, email }) {
   const idUser = localStorage.getItem("id");
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  // const [dataSkor, setDataSkor] = useState([]);
 
   let dataSkor = [];
 
@@ -19,13 +18,15 @@ function UserComponent({ username, email }) {
   }
 
   useEffect(() => {
-    axios.get(`https://back-end-production-a765.up.railway.app/Nilai/user/${idUser}`).then((res) => {
-      setData(res.data.doc);
-      setIsLoading(false);
-    });
+    axios
+      .get(
+        `https://back-end-production-a765.up.railway.app/Nilai/user/${idUser}`
+      )
+      .then((res) => {
+        setData(res.data.doc);
+        setIsLoading(false);
+      });
   }, []);
-
-  // console.log(data);
 
   data.map((el) => {
     return dataSkor.push(parseInt(el.skor));
@@ -33,9 +34,17 @@ function UserComponent({ username, email }) {
 
   return (
     <div>
-      <div className="card my-2" style={{ borderRadius: "20px", border: "0px", padding: "20px" }}>
+      <div
+        className="card my-2"
+        style={{ borderRadius: "20px", border: "0px", padding: "20px" }}
+      >
         <div className="text-center">
-          <img src="https://cdn-icons-png.flaticon.com/512/2922/2922510.png" alt="" className="" width={"100px"} />
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/2922/2922510.png"
+            alt=""
+            className=""
+            width={"100px"}
+          />
         </div>
         <div className="card-body text-center">
           <h5 className="">{username}</h5>

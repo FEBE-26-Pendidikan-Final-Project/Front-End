@@ -12,9 +12,7 @@ import TeacherLogin from "./pages/teacher/TeacherLogin";
 import TeacherRegist from "./pages/teacher/TeacherRegist";
 import TeacherAccount from "./pages/teacher/TeacherAccount";
 import TeacherQuiz from "./pages/teacher/TeacherQuiz";
-import QuizList from "./pages/teacher/QuizList";
 import TeacherQuizUpdate from "./pages/teacher/TeacherQuizUpdate";
-import DataUsers from "./components/teacher/DataUsers";
 import TeacherAllUsers from "./pages/teacher/TeacherAllUsers";
 
 function App() {
@@ -31,7 +29,6 @@ function App() {
       <Route path="/teachlogin" element={<TeacherLogin />} />
       <Route path="/teachregist" element={<TeacherRegist />} />
       <Route path="/teachaccount" element={<TeacherAccount />} />
-      <Route path="/teacher/quizlist" element={<QuizList />} />
       <Route path="/teacher/quiz/:id" element={<TeacherQuiz />} />
       <Route path="/teacher/quizUpdate/:id" element={<TeacherQuizUpdate />} />
       <Route path="/teachusers" element={<TeacherAllUsers />} />

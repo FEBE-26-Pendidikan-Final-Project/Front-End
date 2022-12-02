@@ -32,13 +32,10 @@ function TeacherAccount() {
           { headers: header }
         )
         .then((result) => {
-          console.log(result.data.message);
           setIsLoading(false);
           setData(result.data.message);
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {});
     }, []);
   }
 

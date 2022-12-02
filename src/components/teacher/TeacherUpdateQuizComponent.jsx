@@ -29,9 +29,7 @@ function TeacherUpdateQuizComponent() {
         setData(res.data.doc);
         setIsLoading(false);
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch(function (error) {});
   }, []);
 
   const header = {
@@ -56,7 +54,6 @@ function TeacherUpdateQuizComponent() {
         }
       )
       .then(function (response) {
-        console.log(response);
         setTitle("");
         setLiteration("");
         setQuiz("");
@@ -68,9 +65,7 @@ function TeacherUpdateQuizComponent() {
 
         navigate(`/home`);
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch(function (error) {});
   };
   return (
     <div>
@@ -89,6 +84,7 @@ function TeacherUpdateQuizComponent() {
                 placeholder="Title"
                 onChange={(e) => setTitle(e.target.value)}
                 style={{ border: "0px", borderRadius: "20px" }}
+                required
               />
             </div>
             <div className="mb-3">
@@ -100,6 +96,7 @@ function TeacherUpdateQuizComponent() {
                 placeholder="Literation"
                 onChange={(e) => setLiteration(e.target.value)}
                 style={{ border: "0px", borderRadius: "20px" }}
+                required
               ></textarea>
             </div>
             <div className="mb-3">
@@ -111,6 +108,7 @@ function TeacherUpdateQuizComponent() {
                 placeholder="Quiz"
                 onChange={(e) => setQuiz(e.target.value)}
                 style={{ border: "0px", borderRadius: "20px" }}
+                required
               ></textarea>
             </div>
             <div className="text-center mb-3">Choice</div>
@@ -126,6 +124,7 @@ function TeacherUpdateQuizComponent() {
                     id="exampleFormControlInput1"
                     value={choiceA}
                     onChange={(e) => setChoiceA(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="input-group mb-3">
@@ -138,6 +137,7 @@ function TeacherUpdateQuizComponent() {
                     id="exampleFormControlInput1"
                     value={choiceB}
                     onChange={(e) => setChoiceB(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="input-group mb-3">
@@ -150,6 +150,7 @@ function TeacherUpdateQuizComponent() {
                     id="exampleFormControlInput1"
                     value={choiceC}
                     onChange={(e) => setChoiceC(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="input-group mb-3">
@@ -162,6 +163,7 @@ function TeacherUpdateQuizComponent() {
                     id="exampleFormControlInput1"
                     value={choiceD}
                     onChange={(e) => setChoiceD(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="row justify-content-center">
@@ -172,6 +174,7 @@ function TeacherUpdateQuizComponent() {
                         aria-label="Default select example"
                         value={correctAnswer}
                         onChange={(e) => setCorrectAnswer(e.target.value)}
+                        required
                       >
                         <option defaultValue={"0"}>Correct Answer</option>
                         <option value="0">A</option>
@@ -184,7 +187,12 @@ function TeacherUpdateQuizComponent() {
                 </div>
               </div>
               <div className="d-grid">
-                <button className="btn" type="submit" id="btn-finish" style={{ backgroundColor: "#14c38e", color: "#fff" }}>
+                <button
+                  className="btn"
+                  type="submit"
+                  id="btn-finish"
+                  style={{ backgroundColor: "#14c38e", color: "#fff" }}
+                >
                   Update
                 </button>
               </div>

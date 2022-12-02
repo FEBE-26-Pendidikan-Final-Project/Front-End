@@ -4,7 +4,6 @@ import Menu from "../components/Menu";
 import UserComponent from "../components/UserComponent";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import ChangeUsername from "../components/ChangeUsername";
 
 function Account() {
   const idUser = localStorage.getItem("id");
@@ -12,13 +11,6 @@ function Account() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-
-  // const authAxios = axios.create({
-  //   baseURL: "https://back-end-production-a765.up.railway.app/User/",
-  //   headers: {
-  //     authuser: `${tokenUser}`,
-  //   },
-  // });
 
   const header = {
     authuser: localStorage.getItem("token"),
@@ -36,13 +28,10 @@ function Account() {
           headers: header,
         })
         .then((result) => {
-          console.log(result.data.message);
           setIsLoading(false);
           setData(result.data.message);
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {});
     }, []);
   }
 

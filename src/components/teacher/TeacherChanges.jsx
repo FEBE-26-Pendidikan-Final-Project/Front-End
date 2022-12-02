@@ -12,10 +12,6 @@ function TeacherChanges() {
   const [newpassword, setNewPassword] = useState("");
   const [changePw, setChangePw] = useState(false);
 
-  //   if (userId === null) {
-  //     navigate("/");
-  //   }
-
   const header = {
     authadmin: localStorage.getItem("token"),
   };
