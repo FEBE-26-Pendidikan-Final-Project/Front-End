@@ -50,13 +50,13 @@ function TeacherAllUsers() {
         </div>
       ) : (
         <div
-          className="container my-2 d-flex ms-5"
+          className="container my-2 d-flex justify-content-center"
           style={{
             width: "100vw",
             boxSizing: "border-box",
           }}
         >
-          <div className="row mx-0 d-flex">
+          <div className="row mx-0 d-flex ">
             <div className="col-md-12 col-sm-12 d-flex flex-wrap">
               {data.map((item, index) => {
                 return (
