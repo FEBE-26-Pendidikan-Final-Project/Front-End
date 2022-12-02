@@ -4,7 +4,11 @@ import { useNavigate } from "react-router-dom";
 function Class(props) {
   const navigate = useNavigate();
   const handleOpen = () => {
-    navigate(`/literations/${props.idClass}/${props.idClassTaken}`);
+    navigate(`/literations/${props.idClass}`);
+  };
+  const handleOpenUser = () => {
+    navigate(`/literations/${props.idClass}`);
+    localStorage.setItem("idClassTaken", props.idClassTaken);
   };
 
   if (localStorage.getItem("role") === "teacher") {
@@ -44,7 +48,7 @@ function Class(props) {
             Literasi bacaan tentang Alam
           </p> */}
           <div className="d-grid">
-            <button className="btn btn-outline-primary mt-2" onClick={handleOpen}>
+            <button className="btn btn-outline-primary mt-2" onClick={handleOpenUser}>
               Open
             </button>
           </div>
