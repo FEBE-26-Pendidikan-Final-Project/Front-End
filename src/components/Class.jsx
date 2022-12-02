@@ -30,9 +30,6 @@ function Class(props) {
             <h5 className="title" style={{ color: "#334" }}>
               {props.className}
             </h5>
-            {/* <p className="text" style={{ color: "#999" }}>
-              Literasi bacaan tentang Alam
-            </p> */}
             <div className="d-grid">
               <button
                 className="btn btn-outline-success mt-2"

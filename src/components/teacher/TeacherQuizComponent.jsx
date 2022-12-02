@@ -17,7 +17,6 @@ function TeacherQuizComponent() {
   const choice = [choiceA, choiceB, choiceC, choiceD];
 
   const idClass = useParams();
-  // console.log(idClass.id);
 
   const header = {
     authadmin: localStorage.getItem("token"),
@@ -43,7 +42,6 @@ function TeacherQuizComponent() {
         }
       )
       .then(function (response) {
-        console.log(response);
         setTitle("");
         setLiteration("");
         setQuiz("");
@@ -170,7 +168,12 @@ function TeacherQuizComponent() {
                 </div>
               </div>
               <div className="d-grid">
-                <button className="btn" type="submit" id="btn-finish" style={{ backgroundColor: "#14c38e", color: "#fff" }}>
+                <button
+                  className="btn"
+                  type="submit"
+                  id="btn-finish"
+                  style={{ backgroundColor: "#14c38e", color: "#fff" }}
+                >
                   Save
                 </button>
               </div>

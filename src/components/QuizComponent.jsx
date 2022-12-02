@@ -14,10 +14,12 @@ function QuizComponent() {
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
   useEffect(() => {
-    axios.get(`https://back-end-production-a765.up.railway.app/quiz/${id}`).then((res) => {
-      setData(res.data);
-      setIsLoading(false);
-    });
+    axios
+      .get(`https://back-end-production-a765.up.railway.app/quiz/${id}`)
+      .then((res) => {
+        setData(res.data);
+        setIsLoading(false);
+      });
   }, []);
 
   const handleSubmit = () => {
@@ -46,12 +48,8 @@ function QuizComponent() {
                 headers: header,
               }
             )
-            .then(function (response) {
-              console.log(response);
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
+            .then(function (response) {})
+            .catch(function (error) {});
         });
       } else {
         swal("Sorry", "your answer is incorrect!", "error", {
@@ -81,8 +79,16 @@ function QuizComponent() {
   return (
     <div>
       <section id="quiz-section" className="mx-2">
-        <Timer title={data.doc.nama} minute={5} second={1} navigation={`/score`} />
-        <div className="container mt-3 py-2 px-3 shadow-sm" style={{ backgroundColor: "#fff", borderRadius: "20px" }}>
+        <Timer
+          title={data.doc.nama}
+          minute={5}
+          second={1}
+          navigation={`/score`}
+        />
+        <div
+          className="container mt-3 py-2 px-3 shadow-sm"
+          style={{ backgroundColor: "#fff", borderRadius: "20px" }}
+        >
           <p style={{ textAlign: "justify" }} className="mt-2" id="quiz">
             {data.doc.soal.question}
           </p>
@@ -100,7 +106,6 @@ function QuizComponent() {
               <label className="form-check-label" htmlFor="choice0">
                 <span className="choice">A.</span>
                 <span className="mx-2" id="choiceText0">
-                  {/* {quizz.quiz.question.answer[0]} */}
                   {data.doc.soal.answer[0]}
                 </span>
               </label>
@@ -160,7 +165,12 @@ function QuizComponent() {
         </div>
         <div className="container my-3">
           <div className="d-grid">
-            <button className="btn btn-primary" type="button" id="btn-finish" onClick={() => handleSubmit()}>
+            <button
+              className="btn btn-primary"
+              type="button"
+              id="btn-finish"
+              onClick={() => handleSubmit()}
+            >
               Finish
             </button>
           </div>

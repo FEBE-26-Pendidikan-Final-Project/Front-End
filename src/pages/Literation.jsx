@@ -17,33 +17,34 @@ function Literation(props) {
   const [namaKelas, setNamaKelas] = useState("");
   const [desc, setDesc] = useState("");
 
-  // console.log(idClass.id);
   useEffect(() => {
     if (localStorage.getItem("token") === null) {
       navigate("/");
     }
   });
-  // useEffect(() => {
-  //   axios.get("https://634c0ee3317dc96a30906a1a.mockapi.io//literation").then((res) => {
-  //     setData(res.data);
-  //     setIsLoading(false);
-  //   });
-  // }, []);
+
   useEffect(() => {
-    axios.get(`https://back-end-production-a765.up.railway.app/quiz/kelas/${idClass.id}`).then((res) => {
-      setData(res.data.doc);
-      setIsLoading(false);
-    });
+    axios
+      .get(
+        `https://back-end-production-a765.up.railway.app/quiz/kelas/${idClass.id}`
+      )
+      .then((res) => {
+        setData(res.data.doc);
+        setIsLoading(false);
+      });
   }, []);
 
   useEffect(() => {
-    axios.get(`https://back-end-production-a765.up.railway.app/kelas/${idClass.id}`).then((res) => {
-      setKelas(res.data.doc);
-      setIsLoading(false);
-    });
+    axios
+      .get(
+        `https://back-end-production-a765.up.railway.app/kelas/${idClass.id}`
+      )
+      .then((res) => {
+        setKelas(res.data.doc);
+        setIsLoading(false);
+      });
   }, []);
 
-  // console.log(kelas);
   const addQuiz = (idClass) => {
     navigate(`/teacher/quiz/${idClass}`);
   };
@@ -53,16 +54,16 @@ function Literation(props) {
       authadmin: localStorage.getItem("token"),
     };
     axios
-      .delete(`https://back-end-production-a765.up.railway.app/kelas/${idClass}`, {
-        headers: header,
-      })
+      .delete(
+        `https://back-end-production-a765.up.railway.app/kelas/${idClass}`,
+        {
+          headers: header,
+        }
+      )
       .then(function (response) {
-        console.log(response);
         navigate("/home");
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch(function (error) {});
   };
 
   const updateClass = () => {
@@ -83,9 +84,7 @@ function Literation(props) {
       .then(function (response) {
         location.reload();
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch(function (error) {});
   };
 
   const leaveClass = (id) => {
@@ -93,16 +92,16 @@ function Literation(props) {
       authUser: localStorage.getItem("token"),
     };
     axios
-      .delete(`https://back-end-production-a765.up.railway.app/kelasTaken/${id}`, {
-        headers: header,
-      })
+      .delete(
+        `https://back-end-production-a765.up.railway.app/kelasTaken/${id}`,
+        {
+          headers: header,
+        }
+      )
       .then(function (response) {
-        // console.log(response);
         navigate("/home");
       })
-      .then(function (error) {
-        // console.log(error);
-      });
+      .then(function (error) {});
   };
   if (localStorage.getItem("role") === "teacher") {
     return (
@@ -111,12 +110,20 @@ function Literation(props) {
 
         <div className="container mt-5">
           <div className="d-grid">
-            <button className="bg-primary btn mb-3" style={{ color: "#fff" }} onClick={() => addQuiz(idClass.id)}>
+            <button
+              className="bg-primary btn mb-3"
+              style={{ color: "#fff" }}
+              onClick={() => addQuiz(idClass.id)}
+            >
               <i className="bi bi-plus"></i> Add Quiz
             </button>
           </div>
           <div className="d-flex justify-content-center">
-            <button className="btn mb-3 btn-success mx-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button
+              className="btn mb-3 btn-success mx-2"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
               <i className="bi bi-pencil-fill"></i> Update Class
             </button>
             <div
@@ -129,7 +136,12 @@ function Literation(props) {
               <div className="modal-dialog">
                 <div className="modal-content modal-content-teacher">
                   <div className="modal-header">
-                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button
+                      type="button"
+                      className="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
                   </div>
                   <div className="modal-body text-center mt-3 position-relative">
                     <p className="text-light text-name mt-3">Class Name</p>
@@ -168,14 +180,19 @@ function Literation(props) {
                 </div>
               </div>
             </div>
-            <button className="btn mb-3 btn-danger mx-2" onClick={() => deleteClass(idClass.id)}>
-              <i className="bi bi-trash-fill"></i> Delete Class
-            </button>
           </div>
-          <div className="container-fluid py-3 px-3 shadow-sm" style={{ backgroundColor: "#fff", borderRadius: "20px" }}>
+          <div
+            className="container-fluid py-3 px-3 shadow-sm"
+            style={{ backgroundColor: "#fff", borderRadius: "20px" }}
+          >
             <div
               className="container"
-              style={{ opacity: "0.5", height: "100px", borderRadius: "20px", backgroundColor: "#14c38e" }}
+              style={{
+                opacity: "0.5",
+                height: "100px",
+                borderRadius: "20px",
+                backgroundColor: "#14c38e",
+              }}
             ></div>
             <div className="text-center h4 mt-4">{kelas.nama}</div>
             <p className="text-center">{kelas.ket}</p>
@@ -224,8 +241,14 @@ function Literation(props) {
             <i className="bi bi-box-arrow-in-down-left"></i> Leave Class
           </button>
         </div>
-        <div className="container-fluid py-3 px-3 shadow-sm" style={{ backgroundColor: "#fff", borderRadius: "20px" }}>
-          <div className="container bg-primary" style={{ opacity: "0.5", height: "100px", borderRadius: "20px" }}></div>
+        <div
+          className="container-fluid py-3 px-3 shadow-sm"
+          style={{ backgroundColor: "#fff", borderRadius: "20px" }}
+        >
+          <div
+            className="container bg-primary"
+            style={{ opacity: "0.5", height: "100px", borderRadius: "20px" }}
+          ></div>
           <div className="text-center h4 mt-4">{kelas.nama}</div>
           <p className="text-center">{kelas.ket}</p>
         </div>
@@ -237,7 +260,6 @@ function Literation(props) {
               </div>
             </div>
           ) : (
-            // (console.log("Hello"), console.log(data))
             data.map((item, index) => {
               return (
                 <div key={index}>

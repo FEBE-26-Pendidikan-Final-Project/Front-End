@@ -13,13 +13,6 @@ function TeacherAllUsers() {
 
   const navigate = useNavigate();
 
-  // const authAxios = axios.create({
-  //   baseURL: "https://back-end-production-a765.up.railway.app/User/",
-  //   headers: {
-  //     authuser: `${tokenUser}`,
-  //   },
-  // });
-
   const authadmin = localStorage.getItem("token");
 
   const header = {
@@ -43,12 +36,8 @@ function TeacherAllUsers() {
       .then((result) => {
         setData(result.data);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   }, []);
-
-  console.log(data);
 
   return (
     <div>

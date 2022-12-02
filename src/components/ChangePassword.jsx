@@ -12,7 +12,6 @@ function ChangePassword() {
   const [password, setPassword] = useState("");
   const [newpassword, setNewPassword] = useState("");
   const [changePw, setChangePw] = useState(false);
-  // const [email, setEmail] = useState("");
 
   if (tokenUser === null) {
     navigate("/");
@@ -89,7 +88,6 @@ function ChangePassword() {
           }
         )
         .then((result) => {
-          console.log(result);
           swal(
             "Success!",
             "password has been changed successfully.",

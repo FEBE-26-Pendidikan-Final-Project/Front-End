@@ -12,9 +12,12 @@ function LiterationList(props) {
       authadmin: localStorage.getItem("token"),
     };
     axios
-      .delete(`https://back-end-production-a765.up.railway.app/Quiz/${idQuiz}`, {
-        headers: header,
-      })
+      .delete(
+        `https://back-end-production-a765.up.railway.app/Quiz/${idQuiz}`,
+        {
+          headers: header,
+        }
+      )
       .then(function (response) {
         location.reload();
       })
@@ -30,7 +33,10 @@ function LiterationList(props) {
   if (localStorage.getItem("role") === "teacher") {
     return (
       <div>
-        <li className="shadow-sm my-3 d-flex justify-content-between" style={{ cursor: "default" }}>
+        <li
+          className="shadow-sm my-3 d-flex justify-content-between"
+          style={{ cursor: "default" }}
+        >
           {props.title}
           <span>
             <i
@@ -38,7 +44,11 @@ function LiterationList(props) {
               onClick={() => handleUpdate(props.id)}
               style={{ cursor: "pointer" }}
             ></i>
-            <i className="bi bi-trash-fill text-danger" onClick={() => handleDelete()} style={{ cursor: "pointer" }}></i>
+            <i
+              className="bi bi-trash-fill text-danger"
+              onClick={() => handleDelete()}
+              style={{ cursor: "pointer" }}
+            ></i>
           </span>
         </li>
       </div>
@@ -46,7 +56,10 @@ function LiterationList(props) {
   }
   return (
     <div>
-      <li className="shadow-sm my-3" onClick={() => navigate(`/text-quiz/${props.id}`)}>
+      <li
+        className="shadow-sm my-3"
+        onClick={() => navigate(`/text-quiz/${props.id}`)}
+      >
         {props.title}
       </li>
     </div>

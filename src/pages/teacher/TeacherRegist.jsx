@@ -35,14 +35,6 @@ function TeacherRegist() {
   };
 
   const clickRegist = (e) => {
-    // const notHuruf = () => {
-    //   if (p.search(/[a-z]/) < 0) {
-    //     return swal("Error!", "tidak boleh hanya angka", "error", {
-    //       timer: 3000,
-    //     });
-    //   }
-    // };
-    // notHuruf();
     const data = {
       nama: username,
       email: email,
@@ -69,12 +61,10 @@ function TeacherRegist() {
               }
             );
             navigate("/teachlogin");
-            console.log(result);
           }
         }
       })
       .catch((e) => {
-        console.log(e);
         if (!username) {
           swal("Error!", "username tidak boleh kosong", "error", {
             timer: 3000,
@@ -99,62 +89,6 @@ function TeacherRegist() {
         }
       });
   };
-
-  // const handleApi = async (e) => {
-  //   let res = await axios.get(
-  //     "https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users"
-  //   );
-  //   let data = await res.data;
-
-  //   const ambilData = () => {
-  //     const result = [];
-  //     for (let i = 0; i < data.length; i++) {
-  //       if (data[i].email == email) {
-  //         result.push(data[i]);
-  //       }
-  //     }
-
-  //     if (result < 1) {
-  //       if (
-  //         username == "" ||
-  //         email == "" ||
-  //         password == "" ||
-  //         confirmPassword == ""
-  //       ) {
-  //         swal("Error!", "data must be filled.", "warning", {
-  //           timer: 4000,
-  //         })
-  //       } else if (password != confirmPassword) {
-  //         swal("Error!", "password is incorrect.", "error", {
-  //           timer: 4000,
-  //         })
-  //       } else {
-  //         axios
-  //           .post("https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users", {
-  //             name: username,
-  //             email: email,
-  //             password: password,
-  //             confirm: confirmPassword,
-  //             point: 0,
-  //           })
-  //           .then((result) => {
-  //             swal("Success!", "your account has been successfully created.", "success", {
-  //               timer: 3000,
-  //             }),
-  //               navigate("/");
-  //           })
-  //           .catch((error) => {
-  //             console.log(error);
-  //           });
-  //       }
-  //     } else {
-  //       swal("Important Message!", "email already registered.", "warning", {
-  //           timer: 4000,
-  //         })
-  //     }
-  //   };
-  //   ambilData();
-  // };
 
   return (
     <>

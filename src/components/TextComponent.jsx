@@ -23,8 +23,16 @@ function TextComponent() {
   return (
     <div>
       <section id="text-quiz" className="mx-2">
-        <Timer title={quizz.nama} minute={10} second={1} navigation={`/quiz/${id}`} />
-        <div className="container mt-3 py-2 px-3 shadow-sm" style={{ backgroundColor: "#fff", borderRadius: "20px" }}>
+        <Timer
+          title={quizz.nama}
+          minute={10}
+          second={1}
+          navigation={`/quiz/${id}`}
+        />
+        <div
+          className="container mt-3 py-2 px-3 shadow-sm"
+          style={{ backgroundColor: "#fff", borderRadius: "20px" }}
+        >
           <h5 className="text-center mt-2" id="text-title">
             {quizz.nama}
           </h5>
@@ -34,7 +42,12 @@ function TextComponent() {
         </div>
         <div className="container my-3">
           <div className="d-grid">
-            <button className="btn btn-primary" type="button" id="btn-finish" onClick={() => handleQuiz(id)}>
+            <button
+              className="btn btn-primary"
+              type="button"
+              id="btn-finish"
+              onClick={() => handleQuiz(id)}
+            >
               Finish Read
             </button>
           </div>

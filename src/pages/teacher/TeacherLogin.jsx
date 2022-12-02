@@ -35,7 +35,6 @@ function TeacherLogin() {
           localStorage.setItem("token", result.data.token);
         localStorage.setItem("id", result.data.id);
         localStorage.setItem("role", "teacher");
-        console.log(result);
         navigate("/home");
       })
       .catch((err) => {
@@ -48,48 +47,8 @@ function TeacherLogin() {
             timer: 1000,
           });
         }
-        // if (!email) {
-        //   swal("Error!", "email is incorrect.", "error", {
-        //     timer: 1000,
-        //   });
-        // } else if (!password) {
-        //   swal("Error!", "password is incorrect.", "error", {
-        //     timer: 1000,
-        //   });
-        // } else {
-        //   swal("Error!", "email or password is incorrect.", "error", {
-        //     timer: 1000,
-        //   });
-        // }
       });
   };
-
-  // const handleGetData = async () => {
-  //   let res = await axios.get("https://6350d00e3e9fa1244e4dbdc5.mockapi.io/users");
-  //   let data = await res.data;
-
-  //   const ambilData = () => {
-  //     const result = [];
-  //     for (let i = 0; i < data.length; i++) {
-  //       if (data[i].email == email && data[i].password == password) {
-  //         result.push(data[i]);
-  //       }
-  //     }
-
-  //     if (result < 1) {
-  //       swal("Error!", "email or password is incorrect.", "error", {
-  //         timer: 1000,
-  //       });
-  //     } else {
-  //       swal("Success!", "login successfully.", "success", {
-  //         timer: 1000,
-  //       }),
-  //         navigate(`/home`);
-  //       localStorage.setItem("idUser", result[0].id);
-  //     }
-  //   };
-  //   ambilData();
-  // };
   return (
     <>
       <div className="wrapper d-flex justify-content-center position-relative">
@@ -108,7 +67,10 @@ function TeacherLogin() {
 
             <div className="card-title">Tingkatkan Literasi Mu</div>
             <div className="card-text position-absolute">
-              <p className="">Dengan Membaca maka kita akan kita akan berkhayal tentang dunia akhirat</p>
+              <p className="">
+                Dengan Membaca maka kita akan kita akan berkhayal tentang dunia
+                akhirat
+              </p>
             </div>
           </div>
           <div className="box-right">
@@ -152,7 +114,12 @@ function TeacherLogin() {
               />
             </div>
             <div className="button-login">
-              <button onClick={clickLogin} type="button" className="btn btn-primary p-0 btn-teacher" id="login">
+              <button
+                onClick={clickLogin}
+                type="button"
+                className="btn btn-primary p-0 btn-teacher"
+                id="login"
+              >
                 Login
               </button>
             </div>
