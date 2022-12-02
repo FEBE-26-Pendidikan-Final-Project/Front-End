@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import React, { useEffect, useState } from "react";
 
 function UserComponent({ username, email }) {
@@ -29,6 +30,7 @@ function UserComponent({ username, email }) {
   data.map((el) => {
     return dataSkor.push(parseInt(el.skor));
   });
+
   return (
     <div>
       <div className="card my-2" style={{ borderRadius: "20px", border: "0px", padding: "20px" }}>

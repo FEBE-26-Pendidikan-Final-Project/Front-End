@@ -10,6 +10,7 @@ function TeacherChanges() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [newpassword, setNewPassword] = useState("");
+  const [changePw, setChangePw] = useState(false);
 
   //   if (userId === null) {
   //     navigate("/");
@@ -17,6 +18,14 @@ function TeacherChanges() {
 
   const header = {
     authadmin: localStorage.getItem("token"),
+  };
+
+  const handleChangePw = () => {
+    setChangePw(true);
+  };
+
+  const handleChangeUsername = () => {
+    setChangePw(false);
   };
 
   const deleteAcc = () => {
@@ -63,10 +72,10 @@ function TeacherChanges() {
     setNewPassword(e.target.value);
   };
 
-  const changeData = () => {
+  const changeDataPassword = () => {
     if (tokenAdmin === null) {
       navigate("/");
-    } else if (username == "") {
+    } else if (password == "") {
       swal("Error!", "password must be filled.", "warning", {
         timer: 4000,
       });
@@ -75,7 +84,6 @@ function TeacherChanges() {
         .put(
           `https://back-end-production-a765.up.railway.app/admin/${adminId}`,
           {
-            nama: username,
             password: password,
             newPassword: newpassword,
           },
@@ -146,6 +154,40 @@ function TeacherChanges() {
     }
   };
 
+  const changeDataUsername = () => {
+    if (tokenAdmin === null) {
+      navigate("/");
+    } else if (username == "") {
+      swal("Error!", "username or password must be filled.", "warning", {
+        timer: 4000,
+      });
+    } else {
+      axios
+        .put(
+          `https://back-end-production-a765.up.railway.app/admin/${adminId}`,
+          {
+            nama: username,
+          },
+          {
+            headers: header,
+          }
+        )
+        .then((result) => {
+          console.log(result);
+          swal(
+            "Success!",
+            "password has been changed successfully.",
+            "success",
+            {
+              timer: 3000,
+            }
+          ),
+            navigate("/home"),
+            setUsername("");
+        });
+    }
+  };
+
   return (
     <div>
       <div
@@ -154,50 +196,90 @@ function TeacherChanges() {
       >
         <div className="card-body">
           <h5 className="text-center">Change Account Data</h5>
-          <p className="text-change pt-3">change your username right here</p>
-          <div className="mb-3 col-md-6">
-            <input
-              type="text"
-              className="form-control "
-              id="exampleFormControlInput1"
-              placeholder="Change Username"
-              value={username}
-              onChange={handleUsername}
-            />
-          </div>
-          <p className="text-change">old password</p>
-          <div className="mb-3 col-md-6">
-            <input
-              type="password"
-              className="form-control "
-              id="exampleFormControlInput1"
-              placeholder="Old Password"
-              value={password}
-              onChange={handlePassword}
-            />
-          </div>
-          <p className="text-change">new password</p>
-          <div className="mb-3 col-md-6">
-            <input
-              type="password"
-              className="form-control "
-              id="exampleFormControlInput1"
-              placeholder="New Password"
-              value={newpassword}
-              onChange={handleNewPassword}
-            />
-          </div>
+          {!changePw && (
+            <>
+              <p className="text-change pt-3">
+                change your username right here
+              </p>
+              <div className="mb-3 col-md-6">
+                <input
+                  type="text"
+                  className="form-control "
+                  id="exampleFormControlInput1"
+                  placeholder="Change Username"
+                  value={username}
+                  onChange={handleUsername}
+                />
+              </div>
+            </>
+          )}
+          {changePw && (
+            <>
+              <p className="text-change">old password</p>
+              <div className="mb-3 col-md-6">
+                <input
+                  type="password"
+                  className="form-control "
+                  id="exampleFormControlInput1"
+                  placeholder="Old Password"
+                  value={password}
+                  onChange={handlePassword}
+                />
+              </div>
+              <p className="text-change">new password</p>
+              <div className="mb-3 col-md-6">
+                <input
+                  type="password"
+                  className="form-control "
+                  id="exampleFormControlInput1"
+                  placeholder="New Password"
+                  value={newpassword}
+                  onChange={handleNewPassword}
+                />
+              </div>
+            </>
+          )}
+
           <div className="d-grid">
-            <button className="btn btn-success" onClick={changeData}>
-              Save
-            </button>
+            {!changePw && (
+              <button className="btn btn-success" onClick={changeDataUsername}>
+                Save Username
+              </button>
+            )}
+            {changePw && (
+              <button className="btn btn-success" onClick={changeDataPassword}>
+                Save New Password
+              </button>
+            )}
           </div>
-          <button
-            className="btn btn-outline-danger d-flex ms-auto mt-3 "
-            onClick={deleteAcc}
-          >
-            Delete Account
-          </button>
+          <div className="d-flex">
+            <button
+              className="btn btn-outline-danger d-flex ms-auto me-3 mt-3 "
+              onClick={deleteAcc}
+            >
+              Delete Account
+            </button>
+            {!changePw && (
+              <>
+                <button
+                  className="btn btn-outline-success d-flex mt-3 "
+                  onClick={handleChangePw}
+                >
+                  Change Password
+                </button>
+              </>
+            )}
+            {changePw && (
+              <>
+                <button
+                  className="btn btn-outline-success d-flex mt-3 "
+                  onClick={handleChangeUsername}
+                >
+                  Back
+                </button>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>
