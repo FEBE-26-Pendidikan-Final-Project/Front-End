@@ -9,6 +9,7 @@ import TeacherMenu from "../components/teacher/TeacherMenu";
 import TeacherModal from "../components/teacher/TeacherModal";
 
 function Home() {
+  localStorage.removeItem("idClassTaken");
   const idUser = localStorage.getItem("id");
   const [data, setData] = useState([]);
   const [classTaken, setClassTaken] = useState([]);

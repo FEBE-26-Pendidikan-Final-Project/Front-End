@@ -1,39 +1,45 @@
-import axios, { Axios } from "axios";
+import axios from "axios";
+
 import React, { useEffect, useState } from "react";
 
 function UserComponent({ username, email }) {
   const idUser = localStorage.getItem("id");
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  // const [dataSkor, setDataSkor] = useState([]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       `https://back-end-production-a765.up.railway.app/Nilai/6381bc39818db043ac587a83`
-  //     )
-  //     .then((result) => {
-  //       console.log(result);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
+  let dataSkor = [];
+
+  function totalSkor(arr) {
+    let sum = 0;
+    for (let a of arr) {
+      sum += a;
+    }
+    return sum;
+  }
+
+  useEffect(() => {
+    axios.get(`https://back-end-production-a765.up.railway.app/Nilai/user/${idUser}`).then((res) => {
+      setData(res.data.doc);
+      setIsLoading(false);
+    });
+  }, []);
+
+  // console.log(data);
+
+  data.map((el) => {
+    return dataSkor.push(parseInt(el.skor));
+  });
 
   return (
     <div>
-      <div
-        className="card my-2"
-        style={{ borderRadius: "20px", border: "0px", padding: "20px" }}
-      >
+      <div className="card my-2" style={{ borderRadius: "20px", border: "0px", padding: "20px" }}>
         <div className="text-center">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/2922/2922510.png"
-            alt=""
-            className=""
-            width={"100px"}
-          />
+          <img src="https://cdn-icons-png.flaticon.com/512/2922/2922510.png" alt="" className="" width={"100px"} />
         </div>
         <div className="card-body text-center">
           <h5 className="">{username}</h5>
-          <p className="">Your Point</p>
+          <p className="">{totalSkor(dataSkor)}</p>
           <h6>{email}</h6>
         </div>
       </div>
