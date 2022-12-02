@@ -61,7 +61,7 @@ function Login() {
   return (
     <Fragment>
       {redirect && navigate("/home")}
-      <div className="wrapper d-flex justify-content-center position-relative">
+      <div className="wrapper d-flex justify-content-center position-relative mt-0">
         <div className="box d-flex">
           <div className="box-left text-center position-relative">
             <div className="bulet1 position-absolute">

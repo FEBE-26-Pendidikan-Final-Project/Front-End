@@ -4,11 +4,12 @@
 }
 
 .wrapper {
-  margin-top: 4px;
-  background-color: #e4e9f4;
+  margin-top: 0;
+  background-color: #f4f9ff;
 }
 
 .box {
+  margin-top: 0;
   width: 850px;
   height: 601px;
 }
@@ -22,6 +23,7 @@
 }
 
 .box-right {
+  margin-top: 0;
   width: 50%;
   height: 100%;
   background-color: #fff;

@@ -93,7 +93,7 @@ function Register() {
 
   return (
     <>
-      <div className="wrapper d-flex justify-content-center position-relative">
+      <div className="wrapper d-flex justify-content-center position-relative mt-0">
         <div className="box d-flex">
           <div className="box-left-regist">
             <div className="logo text-center">
