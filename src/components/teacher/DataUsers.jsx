@@ -4,10 +4,10 @@ import { useParams } from "react-router-dom";
 
 function DataUsers({ id, nama, email }) {
   const [data, setData] = useState("");
+  const [updateUsername, setUpdateUsername] = useState("");
   const authadmin = localStorage.getItem("token");
-
-  const idUsers = useParams();
   const idUser = id;
+  const idUpdate = localStorage.getItem("idUpdate");
 
   const header = {
     authadmin: authadmin,
@@ -44,6 +44,45 @@ function DataUsers({ id, nama, email }) {
     });
   };
 
+  const handleButtonEdit = () => {
+    // setIdUpdate(id);
+    localStorage.setItem("idUpdate", id);
+  };
+
+  const handleUpdateUsername = (e) => {
+    setUpdateUsername(e.target.value);
+  };
+
+  const handleUpdateUser = () => {
+    if (updateUsername == "") {
+      swal("Error!", "new username must be filled.", "warning", {
+        timer: 3000,
+      });
+    } else {
+      axios
+        .put(
+          `https://back-end-production-a765.up.railway.app/Admin/updateUser/${idUpdate}`,
+          {
+            nama: updateUsername,
+          },
+          {
+            headers: header,
+          }
+        )
+        .then((result) => {
+          swal("Success!", "user has been update successfully.", "success", {
+            timer: 3000,
+          });
+          location.reload(), localStorage.removeItem("idUpdate");
+        })
+        .catch((error) => {
+          swal("Error!", "user failed to update.", "error", {
+            timer: 3000,
+          });
+        });
+    }
+  };
+
   return (
     <div
       className="card ms-3 mt-3"
@@ -71,12 +110,68 @@ function DataUsers({ id, nama, email }) {
           Email : {email}
         </p>
 
-        <button
-          className="btn btn-outline-danger mt-3 w-100"
-          onClick={handleDeleteUser}
-        >
-          Delete
-        </button>
+        <div className="d-flex">
+          <button
+            type="button"
+            className="btn btn-outline-success w-50 mt-3 me-1"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            onClick={handleButtonEdit}
+          >
+            Edit
+          </button>
+
+          <div
+            className="modal fade"
+            id="exampleModal"
+            tabIndex={-1}
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog">
+              <div className="modal-content modal-content-teacher">
+                <div className="modal-header">
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div className="modal-body text-center position-relative">
+                  <p className="text-light text-name mt-3">Edit Username</p>
+                  <div className="group-input">
+                    <input
+                      type="text"
+                      className="text-center col-md-8"
+                      required
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      value={updateUsername}
+                      onChange={(e) => handleUpdateUsername(e)}
+                    />
+                  </div>
+                </div>
+                <div className="footer mx-auto">
+                  <button
+                    data-bs-dismiss="modal"
+                    type="button"
+                    className="btn btn-primary btn-join-modal p-0"
+                    onClick={handleUpdateUser}
+                  >
+                    Update
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button
+            className="btn btn-outline-danger mt-3 w-50"
+            onClick={handleDeleteUser}
+          >
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );
