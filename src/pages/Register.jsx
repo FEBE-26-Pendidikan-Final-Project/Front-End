@@ -19,23 +19,23 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const p = password;
 
-  const handleUsername = (e) => {
+  const handleUsername = e => {
     setUsername(e.target.value);
   };
 
-  const handleEmail = (e) => {
+  const handleEmail = e => {
     setEmail(e.target.value);
   };
 
-  const handlePassword = (e) => {
+  const handlePassword = e => {
     setPassword(e.target.value);
   };
 
-  const handleConfirmPassword = (e) => {
+  const handleConfirmPassword = e => {
     setConfirmPassword(e.target.value);
   };
 
-  const clickRegist = (e) => {
+  const clickRegist = e => {
     const data = {
       nama: username,
       email: email,
@@ -46,7 +46,7 @@ function Register() {
         "https://back-end-production-a765.up.railway.app/User/register",
         data
       )
-      .then((result) => {
+      .then(result => {
         if (result) {
           if (result.data) {
             setUsername("");
@@ -65,7 +65,7 @@ function Register() {
           }
         }
       })
-      .catch((e) => {
+      .catch(e => {
         if (!username) {
           swal("Error!", "username tidak boleh kosong", "error", {
             timer: 3000,
@@ -84,6 +84,10 @@ function Register() {
           });
         } else if (e.response.data.message == "Email Sudah digunakan !") {
           swal("Error!", "email sudah digunakan", "error", {
+            timer: 3000,
+          });
+        } else if (e.response.data.message == `"email" must be a valid email`) {
+          swal("Error!", "email tidak valid", "error", {
             timer: 3000,
           });
         } else {
@@ -167,7 +171,7 @@ function Register() {
             </div>
             <div className="button-register">
               <button
-                onClick={(e) => clickRegist(e)}
+                onClick={e => clickRegist(e)}
                 type="button"
                 className="btn btn-primary btn-regist p-0"
                 id="register"

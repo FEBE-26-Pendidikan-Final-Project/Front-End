@@ -36,7 +36,7 @@ function ChangePassword() {
       icon: "warning",
       buttons: true,
       dangerMode: true,
-    }).then((willDelete) => {
+    }).then(willDelete => {
       if (willDelete) {
         axios
           .delete(
@@ -45,7 +45,7 @@ function ChangePassword() {
               headers: header,
             }
           )
-          .then((res) => {
+          .then(res => {
             swal("account deleted successfully.", {
               icon: "success",
             }),
@@ -57,15 +57,15 @@ function ChangePassword() {
     });
   };
 
-  const handlePassword = (e) => {
+  const handlePassword = e => {
     setPassword(e.target.value);
   };
 
-  const handleUsername = (e) => {
+  const handleUsername = e => {
     setUsername(e.target.value);
   };
 
-  const handleNewPassword = (e) => {
+  const handleNewPassword = e => {
     setNewPassword(e.target.value);
   };
 
@@ -87,15 +87,10 @@ function ChangePassword() {
             headers: header,
           }
         )
-        .then((result) => {
-          swal(
-            "Success!",
-            "password has been changed successfully.",
-            "success",
-            {
-              timer: 3000,
-            }
-          ),
+        .then(result => {
+          swal("Success!", "Username berhasil diubah.", "success", {
+            timer: 3000,
+          }),
             navigate("/home"),
             setUsername(""),
             setPassword(""),
@@ -123,7 +118,7 @@ function ChangePassword() {
             headers: header,
           }
         )
-        .then((result) => {
+        .then(result => {
           swal(
             "Success!",
             "password has been changed successfully.",
@@ -136,7 +131,7 @@ function ChangePassword() {
             setPassword(""),
             setNewPassword("");
         })
-        .catch((error) => {
+        .catch(error => {
           if (
             error.response.data.message ==
             '"password" length must be at least 6 characters long'

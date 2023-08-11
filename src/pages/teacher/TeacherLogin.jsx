@@ -13,11 +13,11 @@ function TeacherLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleEmail = (e) => {
+  const handleEmail = e => {
     setEmail(e.target.value);
   };
 
-  const handlePassword = (e) => {
+  const handlePassword = e => {
     setPassword(e.target.value);
   };
 
@@ -28,7 +28,7 @@ function TeacherLogin() {
     };
     axios
       .post("https://back-end-production-a765.up.railway.app/Admin/login", data)
-      .then((result) => {
+      .then(result => {
         swal("Success!", "login successfully.", "success", {
           timer: 1000,
         }),
@@ -37,16 +37,19 @@ function TeacherLogin() {
         localStorage.setItem("role", "teacher");
         navigate("/home");
       })
-      .catch((err) => {
-        if (err.response.data.message == "Email Anda Salah!") {
-          swal("Error!", "email is incorrect.", "error", {
-            timer: 1000,
-          });
-        } else if (err.response.data.message == "Password Anda Salah!") {
-          swal("Error!", "password is incorrect.", "error", {
-            timer: 1000,
-          });
-        }
+      .catch(err => {
+        // if (err.response.data.message == "Email Anda Salah!") {
+        //   swal("Error!", "email is incorrect.", "error", {
+        //     timer: 1000,
+        //   });
+        // } else if (err.response.data.message == "Password Anda Salah!") {
+        //   swal("Error!", "password is incorrect.", "error", {
+        //     timer: 1000,
+        //   });
+        // }
+        swal("Error!", "Email or Password is incorrect.", "error", {
+          timer: 1000,
+        });
       });
   };
   return (
