@@ -53,7 +53,7 @@ function Home() {
         <div className="container">
           <div className="row justify-content-between my-2">
             <div className="col-lg-3">
-              <form className="d-flex" role="search">
+              {/* <form className="d-flex" role="search">
                 <input
                   className="form-control"
                   type="search"
@@ -68,7 +68,7 @@ function Home() {
                 >
                   <i className="bi bi-search"></i>
                 </button>
-              </form>
+              </form> */}
             </div>
             <div className="col-lg-2 my-2 d-grid">
               <TeacherModal />
@@ -93,7 +93,7 @@ function Home() {
       <div className="container">
         <div className="row justify-content-between my-2">
           <div className="col-lg-3">
-            <form className="d-flex" role="search">
+            {/* <form className="d-flex" role="search">
               <input
                 className="form-control"
                 type="search"
@@ -104,7 +104,7 @@ function Home() {
               <button className="btn" type="submit" id="btn-search">
                 <i className="bi bi-search"></i>
               </button>
-            </form>
+            </form> */}
           </div>
           <div className="col-lg-2 my-2 d-grid">
             <JoinClass />
