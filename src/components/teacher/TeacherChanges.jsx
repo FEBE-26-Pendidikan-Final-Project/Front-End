@@ -31,7 +31,7 @@ function TeacherChanges() {
       icon: "warning",
       buttons: true,
       dangerMode: true,
-    }).then((willDelete) => {
+    }).then(willDelete => {
       if (willDelete) {
         axios
           .delete(
@@ -40,7 +40,7 @@ function TeacherChanges() {
               headers: header,
             }
           )
-          .then((res) => {
+          .then(res => {
             console.log(res);
             swal("account deleted successfully.", {
               icon: "success",
@@ -49,20 +49,20 @@ function TeacherChanges() {
             localStorage.removeItem("token");
             navigate("/teachlogin");
           })
-          .catch((err) => {});
+          .catch(err => {});
       }
     });
   };
 
-  const handleUsername = (e) => {
+  const handleUsername = e => {
     setUsername(e.target.value);
   };
 
-  const handlePassword = (e) => {
+  const handlePassword = e => {
     setPassword(e.target.value);
   };
 
-  const handleNewPassword = (e) => {
+  const handleNewPassword = e => {
     setNewPassword(e.target.value);
   };
 
@@ -85,7 +85,7 @@ function TeacherChanges() {
             headers: header,
           }
         )
-        .then((result) => {
+        .then(result => {
           swal(
             "Success!",
             "password has been changed successfully.",
@@ -99,7 +99,7 @@ function TeacherChanges() {
             setPassword(""),
             setNewPassword("");
         })
-        .catch((error) => {
+        .catch(error => {
           if (
             error.response.data.message ==
             '"password" length must be at least 6 characters long'
@@ -165,10 +165,10 @@ function TeacherChanges() {
             headers: header,
           }
         )
-        .then((result) => {
+        .then(result => {
           swal(
             "Success!",
-            "password has been changed successfully.",
+            "Username has been changed successfully.",
             "success",
             {
               timer: 3000,
