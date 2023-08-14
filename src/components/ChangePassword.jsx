@@ -88,9 +88,14 @@ function ChangePassword() {
           }
         )
         .then(result => {
-          swal("Success!", "Username berhasil diubah.", "success", {
-            timer: 3000,
-          }),
+          swal(
+            "Success!",
+            "Username has been changed successfully.",
+            "success",
+            {
+              timer: 3000,
+            }
+          ),
             navigate("/home"),
             setUsername(""),
             setPassword(""),

@@ -66,27 +66,27 @@ function TeacherRegist() {
       })
       .catch(e => {
         if (!username) {
-          swal("Error!", "username tidak boleh kosong", "error", {
+          swal("Error!", "username cannot be empty", "error", {
             timer: 3000,
           });
         } else if (!email) {
-          swal("Error!", "email tidak boleh kosong", "error", {
+          swal("Error!", "email cannot be empty", "error", {
             timer: 3000,
           });
         } else if (password !== confirmPassword) {
-          swal("Error!", "password tidak cocok", "error", {
+          swal("Error!", "passwords do not match", "error", {
             timer: 3000,
           });
         } else if (password.length < 6) {
-          swal("Error!", "password harus lebih dari 6 karakter", "error", {
+          swal("Error!", "password must be longer than 6 characters", "error", {
             timer: 3000,
           });
         } else if (e.response.data.message == "Email Sudah digunakan !") {
-          swal("Error!", "email sudah digunakan", "error", {
+          swal("Error!", "email already in use", "error", {
             timer: 3000,
           });
         } else if (e.response.data.message == `"email" must be a valid email`) {
-          swal("Error!", "email tidak valid", "error", {
+          swal("Error!", "invalid email", "error", {
             timer: 3000,
           });
         } else {
